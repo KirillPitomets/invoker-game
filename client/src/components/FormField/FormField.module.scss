@@ -1,0 +1,27 @@
+@import '../../styles/components/variables';
+
+.icon {
+	&_marg {
+		margin-right: .8rem;
+	}
+}
+
+.label {
+	width: 100%;
+	display: flex;
+}
+
+.input {
+	width: 100%;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid rgba(white, .3);
+	color: $font-color;
+
+	padding: .5rem 0;
+
+	transition: border-bottom-color .2s ease;
+	&:focus {
+		border-bottom-color: white;
+	}
+}

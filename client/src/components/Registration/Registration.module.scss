@@ -1,0 +1,29 @@
+.label {
+	margin-top: 1rem;
+}
+
+.form {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.link {
+	color: rgba(white, .5);
+
+	transition: color .2s ease;
+
+	&:hover {
+		color: white;
+	}
+
+	&_marg {
+		margin-top: .5rem;
+	}
+}
+
+.submit {
+	margin-top: 1.2rem;
+}

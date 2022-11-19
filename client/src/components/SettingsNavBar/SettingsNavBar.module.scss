@@ -1,0 +1,46 @@
+@import '../../styles/components/variables';
+
+.wrapper {
+	width: 100%;
+	max-width: 350px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.link {
+
+	position: relative;
+
+	// ==== Underline ====
+	&::before {
+		content: "";
+
+		width: 110%;
+		height: 1px;
+
+		border-radius: 2px;
+
+		position: absolute;
+		left: -5%;
+		bottom: -0.1rem;
+
+		background: $font-color;
+
+		transform: scale(0) translateX(-100%);
+
+		transition: transform .2s ease;
+	}
+
+	// ==== Modifiers ====
+	&:hover {
+		&::before {
+			transform: scale(1) translateX(0);
+		}
+	}
+
+	&_active::before {
+		transform: scale(1) translateX(0);
+	}
+}

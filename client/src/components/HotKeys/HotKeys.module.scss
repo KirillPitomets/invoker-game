@@ -1,0 +1,15 @@
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&_marg { 
+		margin-bottom: 1rem;
+	}
+}
+.inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

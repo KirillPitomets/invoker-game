@@ -1,0 +1,28 @@
+@import '../../../styles/components/variables';
+
+.btn {
+	padding: .2rem .3rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: $decor-color;
+
+	transition: background .2s ease;
+
+	&:hover {
+		background: $secondary-decor-color;
+	}
+}
+
+.arrow {
+	width: 12px;
+	height: 21px;
+
+	transition: transform .2s ease;
+
+	&_see-right {
+		transform: rotate(180deg);
+	}
+}

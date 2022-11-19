@@ -1,0 +1,54 @@
+@import '../../styles/components/variables';
+
+.header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.cell-name {
+	color: $font-color;
+	text-align: center;
+
+	&_marg {
+		margin-right: 1rem;
+	}
+	&_pad {
+		padding: 0 0.5rem;
+	}
+}
+
+.cell {
+	text-align: center;
+
+	&:not(:last-child) {
+		border-right: 1px solid $font-color;
+	}
+
+	// ==== Modifiers ====
+	&_pad {
+		padding: 0.5rem 0;
+	}
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 50px 150px 120px 150px;
+
+	background: rgba($main-bg-color, 0.5);
+
+	&:nth-child(2n) {
+		background: rgba($secondary-decor-color, 5);
+	}
+
+	// ==== Modifiers ====
+	&_header {
+		background: transparent;
+		margin-bottom: 0.5rem;
+	}
+}
+
+.wrapper {
+	border-radius: 4px;
+	background: rgba(gray, 0.4);
+}

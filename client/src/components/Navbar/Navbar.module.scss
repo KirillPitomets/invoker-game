@@ -1,0 +1,56 @@
+@import '../../styles/components/variables';
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	// ==== Modifiers ====
+	&_marg {
+		margin-left: 1.9rem;
+	}
+	// ==== Elements ====
+
+	&__btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		margin: 0 0.25rem;
+
+		padding: 0.5rem;
+
+		border-radius: $border-radius;
+
+		position: relative;
+
+
+		&::after {
+			content: '';
+			width: 70%;
+			height: 1px;
+
+			background: $font-color;
+
+			position: absolute;
+			bottom: -1px;
+			left: 15%;
+
+			transition: transform 0.2s ease, opacity 0.1s ease;
+			opacity: 0;
+			transform: translateX(-100%);
+		}
+
+		&:hover::after {
+			transform: translateX(0);
+			opacity: 1;
+		}
+
+
+	}
+
+	&__icon {
+		width: 25px;
+		height: 25px;
+	}
+}

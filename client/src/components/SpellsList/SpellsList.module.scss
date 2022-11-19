@@ -1,0 +1,78 @@
+@import '../../styles/components/variables';
+
+.list {
+	border-radius: $border-radius;
+	padding: 1rem 0.5rem;
+	background: $decor-color;
+
+	position: absolute;
+	right: 0;
+	top: 10%;
+
+	// ==== Modifiers ====
+	&_left &__item_under-line::after {
+		right: unset;
+		left: -0.5rem;
+	}
+	// ==== Elements ====
+	&__item {
+		display: flex;
+		align-items: center;
+
+		margin-bottom: 0.5rem;
+
+		&_under-line {
+			position: relative;
+			margin-bottom: 1.2rem;
+			&::after {
+				content: '';
+				// .5rem is left padding of .list
+				width: calc(100% - 0.5rem);
+				height: 2px;
+
+				position: absolute;
+				right: -0.5rem;
+				bottom: -0.6rem;
+
+				background-color: $secondary-decor-color;
+			}
+		}
+	}
+}
+
+.sphere{
+	font-family: $sport-font;
+	font-size: 0.9rem;
+	font-weight: 400;
+	line-height: 1.2em;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	&:not(:last-child) {
+		&::after {
+			content: ' +';
+			color: white;
+		}
+	}
+	// ==== Modifiers ====
+	&_marg {
+		margin-left: 0.3rem;
+	}
+
+	&_wex {
+		color: $wex-color;
+	}
+	&_exort {
+		color: $exort-color;
+	}
+	&_quas {
+		color: $quas-color;
+	}
+}
+
+.text {
+	font-family: $secondary-font;
+	font-size: .9rem;
+	font-weight: 400;
+	line-height: 1.2em;
+	letter-spacing: 0.06em;
+}

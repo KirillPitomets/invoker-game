@@ -1,0 +1,30 @@
+.header {
+	width: 100%;
+	max-height: 60px;
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1000;
+
+	&__wrapper {
+		width: 100%;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		padding: 0.5rem 1rem;
+	}
+
+	&__inner {
+		display: flex;
+	}
+
+	&__btns {
+		display: flex;
+		gap: 0.5rem;
+	}
+}

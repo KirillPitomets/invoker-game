@@ -1,0 +1,24 @@
+@import '../../styles/components/variables';
+
+.wrapper {
+	display: inline-grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.5rem;
+}
+
+.table-inner {
+	width: 100%;
+
+	border: 1px solid $font-color;
+	border-radius: $border-radius;
+
+	overflow-y: auto;
+
+	// ==== Modifiers ====
+	&_pad {
+		padding: 0.875rem 0.75rem;
+	}
+	&_marg {
+		margin-top: 0.8rem;
+	}
+}

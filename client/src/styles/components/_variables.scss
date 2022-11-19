@@ -1,0 +1,43 @@
+$sport-font: 'Spantaran', sans-serif;
+$secondary-font: 'Inter', sans-serif;
+
+$white: #fff;
+$black: #000000;
+$dark-gray: #3d3d3d;
+$light-gray: #c4c4c4;
+$light-black: #292929;
+$dark-blue: #1c1a24;
+$deep-green: #2bae2b;
+$red: #ff0000;
+$deep-yellow: #feb920;
+
+$wex-color: #d82e8a;
+$exort-color: #a65d01;
+$quas-color: #6cb3d4;
+
+$main-bg-color: $light-black;
+$decor-color: $dark-gray;
+$secondary-decor-color: $light-black;
+
+$hotkeys-popup-bg: rgba(#424242, 0.95);
+
+$thumb-bg-color: $light-gray;
+
+$font-color: $white;
+$secondary-font-color: $black;
+
+$setting-bg: rgba(#35343d, 0.75);
+$des-text-color: rgba(#ffffff, 0.5);
+
+$border-radius: 8px;
+
+// ==== Notification ====
+// ==== success
+$notification-success-bg-color: $deep-green;
+$notification-success-text-color: $black;
+// ==== Error
+$notification-error-bg-color: $red;
+$notification-error-text-color: $black;
+// ==== Warning
+$notification-warning-bg-color: $deep-yellow;
+$notification-warning-text-color: $black;

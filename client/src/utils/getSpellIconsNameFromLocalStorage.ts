@@ -1,0 +1,15 @@
+import { spellIconsEnum, allSpellIcons } from "../types/spellIcons"
+
+
+export const getSpellIconsNameFromLocalStorage = (): spellIconsEnum[] => {
+	const activeSpellIcons: spellIconsEnum[] = []
+
+	allSpellIcons.forEach(icon => {
+		if (Number(localStorage.getItem(`spellIcon-${icon}`))) {
+			activeSpellIcons.push(icon)
+		}
+	})
+
+	return activeSpellIcons
+}
+

@@ -1,0 +1,33 @@
+@import '../../styles/components/variables';
+
+.wrapper {
+	display: inline-flex;
+	flex-direction: column;
+	gap: .5rem;
+
+	background: white;
+	padding: .5rem 1rem;
+	color: black;
+
+	border-radius: 1rem;
+}
+
+.title {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.success {
+	background: $notification-success-bg-color;
+	color: $notification-success-text-color;
+}
+
+.warning {
+	background: $notification-warning-bg-color;
+	color: $notification-warning-text-color;
+}
+
+.error {
+	background: $notification-error-bg-color;
+	color: $notification-error-text-color;
+}

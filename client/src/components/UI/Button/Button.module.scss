@@ -1,0 +1,34 @@
+@import '../../../styles/components/variables';
+
+.btn {
+	color: white;
+	background: $decor-color;
+	border: 1px solid $decor-color;
+	border-radius: calc($border-radius / 2);
+	padding: .5rem 1rem;
+
+	transition: background .2s ease;
+
+	&_outline {
+		background: transparent;
+	}
+
+	&_disabled {
+		cursor: default;
+		opacity: .5;
+		&:hover {
+			background: unset;
+		}
+	}
+
+	&:hover {
+		background: rgba($decor-color, .6);
+	}
+
+	&:focus {
+		border: 1px solid white;
+		background: rgba($decor-color, .8);
+	}
+
+}
+	

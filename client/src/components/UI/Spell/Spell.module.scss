@@ -1,0 +1,54 @@
+@import '../../../styles/components/variables';
+
+.spell {
+	width: 100%;
+	max-width: 75px;
+	
+	padding: 5px;
+
+	background-color: $secondary-decor-color;
+	// ==== Modifiers ====
+
+	&_br-left {
+		border-top-left-radius: calc($border-radius / 2);
+		border-bottom-left-radius: calc($border-radius / 2);
+	}
+	&_br-right {
+		border-top-right-radius: calc($border-radius / 2);
+		border-bottom-right-radius: calc($border-radius / 2);
+	}
+	// ==== Elements ====
+
+	.wrapper {
+		padding-top: 100%;
+		position: relative;
+	}
+
+	&__img {
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		object-fit: cover;
+		object-position: center;
+
+		background-color: $decor-color;
+		border-radius: calc($border-radius / 2);
+	}
+
+	&__void {
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		border-radius: calc($border-radius / 2);
+
+		background: $decor-color;
+	}
+}

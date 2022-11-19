@@ -1,0 +1,15 @@
+@import '../../styles/components/variables';
+
+.number {
+	font-size: 2.5rem;
+	line-height: 1.2em;
+	text-align: center;
+	font-weight: 800;
+	color: $font-color;
+
+}
+
+.unit {
+	font-size: 1.2rem;
+	font-weight: 400;
+}

@@ -1,0 +1,27 @@
+@import './components/reset';
+@import './components/fonts';
+@import './components/variables';
+
+@import './popUp';
+@import './simpleBar';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: $secondary-font;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.2em;
+	color: $font-color;
+
+	background-color: black;
+}
+

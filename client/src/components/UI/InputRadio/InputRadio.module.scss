@@ -1,0 +1,16 @@
+@import '../../../styles/components/variables';
+
+.radio {
+	width: 17px;
+	height: 17px;
+
+	border-radius: 50%;
+	border: 2px solid $font-color;
+	background: $font-color;
+
+	transition: background .2s ease;
+
+	&_active {
+		background: $black;
+	}
+}
