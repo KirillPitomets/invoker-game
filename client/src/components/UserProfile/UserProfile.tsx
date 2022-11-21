@@ -13,18 +13,13 @@ import Avatar from '../Avatar'
 
 const UserProfile = () => {
 	const { isAuth, user, userDataErrMessage } = useTypedSelector(state => state.auth)
+	console.log(user)
 
 	const navigate = useNavigate()
-	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (!isAuth) navigate(`/${RouteEnum.auth}`)
 	}, [isAuth])
-
-	useEffect(() => {
-		dispatch({ type: authActionTypes.GET_USER })
-	}, [])
-
 
 	if (userDataErrMessage) return (
 		<ErrorMessage errors={[userDataErrMessage]} />

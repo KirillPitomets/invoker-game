@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 // ==== hooks ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
-import { useDispatch } from 'react-redux'
-// ==== Utils ====
-import handleSpells from '../../utils/HandleSpells'
-// ==== Redux ====
-import {
-	addSpellToCount,
-	setStartedStatus,
-} from '../../store/action-creators/challenge'
 // ==== Styles ====
 import cl from './App.module.scss'
+// ==== Types ====
+import { authActionTypes } from '../../types/reducers/authReducer'
+// ==== Redux ====
+import { useDispatch } from 'react-redux'
+import { checkAuth } from '../../store/action-creators/auth'
 // ==== Components ====
 import Container from '../Container'
 import Avatar from '../Avatar'
@@ -18,18 +15,29 @@ import UserNickName from '../UserNickName/UserNickName'
 import Header from '../Header'
 import PopUp from '../PopUp'
 import GameScene from '../GameScene'
+import Notification, { stylesNotification } from '../Notification'
 
 const App = () => {
-	const { user } = useTypedSelector(state => state.auth)
+	const { user, userDataErrMessage } = useTypedSelector(state => state.auth)
 	const { customBgUrl, isHideSpellList } = useTypedSelector(
 		state => state.theme
 	)
 
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(checkAuth())
+	}, [])
+
 	return (
 		<div className={cl.app}>
 			<PopUp />
-
 			<Header />
+			{userDataErrMessage ? (
+				<Notification styleNotification={stylesNotification.error} title={userDataErrMessage} />
+			) : null}
+
+			<Notification styleNotification={stylesNotification.error} title={userDataErrMessage} />
 
 			<div
 				className={cl.bg}

@@ -9,7 +9,7 @@ const initialState: IState = {
 		username: '',
 		avatar: '',
 	},
-	isAuth: !!localStorage.getItem('token'),
+	isAuth: false,
 	isLoading: false,
 	errMessages: { reg: '', login: '' },
 	userDataErrMessage: '',
@@ -35,7 +35,7 @@ export const authReducer = (state = initialState, action: IAction): IState => {
 		case authActionTypes.SET_AUTH_STATUS:
 			return { ...state, isAuth: action.payload.isAuth }
 
-		case authActionTypes.SAVE_USER_DATA:
+		case authActionTypes.SET_USER_DATA:
 			return { ...state, user: action.payload }
 
 		case authActionTypes.SET_USER_DATA_ERROR_MESSAGE:

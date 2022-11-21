@@ -1,3 +1,4 @@
+import { IUser } from './../../models/IUser';
 import {
 	IAction,
 	authActionTypes,
@@ -6,12 +7,8 @@ import {
 	ErrorMessagePayload,
 	setAuthStatusPayload,
 	registrationPayload,
-	saveUserDataPayload,
+	setUserDataPayload,
 } from '../../types/reducers/authReducer'
-
-export const login = (payload: loginPayload): IAction => {
-	return { type: authActionTypes.LOGIN, payload }
-}
 
 export const setStatusLoading = (payload: setStatusLoadingPayload): IAction => {
 	return { type: authActionTypes.SET_STATUS_LOADING, payload }
@@ -29,18 +26,24 @@ export const setAuthStatus = (payload: setAuthStatusPayload): IAction => {
 	return { type: authActionTypes.SET_AUTH_STATUS, payload }
 }
 
+export const login = (payload: loginPayload): IAction => {
+	return { type: authActionTypes.LOGIN, payload }
+}
+
 export const registration = (payload: registrationPayload): IAction => {
 	return { type: authActionTypes.REGISTRATION, payload }
 }
 
-export const getUser = (): IAction => {
-	return { type: authActionTypes.GET_USER }
+export const checkAuth = (): IAction => {
+	return { type: authActionTypes.CHECK_AUTH}
 }
 
-export const saveUserData = (payload: saveUserDataPayload): IAction => {
-	return { type: authActionTypes.SAVE_USER_DATA, payload }
+export const setUserData = (payload: IUser): IAction => {
+	return { type: authActionTypes.SET_USER_DATA, payload }
 }
 
-export const setUserDataErrorMessage = (payload: ErrorMessagePayload ): IAction => {
-	return { type: authActionTypes.SET_USER_DATA_ERROR_MESSAGE, payload}
+export const setUserDataErrorMessage = (
+	payload: ErrorMessagePayload
+): IAction => {
+	return { type: authActionTypes.SET_USER_DATA_ERROR_MESSAGE, payload }
 }

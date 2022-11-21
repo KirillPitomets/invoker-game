@@ -1,9 +1,10 @@
+import { IUser } from '../../../models/IUser'
 import { call, put, takeEvery } from 'redux-saga/effects'
 // ==== Axios ====
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 // ==== Action creators ====
 import {
-	saveUserData,
+	setUserData,
 	setAuthStatus,
 	setLoginErrorMessage,
 	setRegErrorMessage,
@@ -15,6 +16,7 @@ import {
 	authActionTypes,
 	loginPayload,
 } from '../../../types/reducers/authReducer'
+import { IDataServerError } from '../../../types/Sagas/AuthSaga'
 import { IAuthResponse } from '../../../models/response/AuthResponse'
 import { registrationPayload } from '../../../types/reducers/authReducer'
 // ==== Service ====
@@ -33,12 +35,23 @@ function* loginWorker({
 			UserService.login,
 			{ username, password }
 		)
-		console.log(response)
+		console.log({
+			username: response.data.user.username,
+			avatar: response.data.user.avatar,
+		})
 		localStorage.setItem('token', response.data?.accessToken)
 
+		yield put(
+			setUserData({
+				username: response.data.user.username,
+				avatar: response.data.user.avatar,
+			})
+		)
+
 		yield put(setAuthStatus({ isAuth: true }))
-	} catch (err: any) {
-		yield put(setLoginErrorMessage({ message: err.response.data.message }))
+	} catch (err: any | AxiosError<IDataServerError>) {
+		console.log(err)
+		// yield put(setLoginErrorMessage({ message: err.response.data.message }))
 	} finally {
 		yield put(setStatusLoading({ isLoading: false }))
 	}
@@ -58,18 +71,13 @@ function* registrationWorker({
 	// 		password,
 	// 		confirmationPassword,
 	// 	})
-
 	// 	localStorage.setItem('token', token.data.token)
-
 	// 	yield put(setAuthStatus({ isAuth: true }))
-
 	// 	yield put(setStatusLoading({ isLoading: false }))
 	// } catch (err: unknown | AxiosError) {
 	// 	yield put(setStatusLoading({ isLoading: false }))
-
 	// 	if (axios.isAxiosError(err)) {
 	// 		const msg: any = err.response?.data
-
 	// 		yield put(setRegErrorMessage({ message: msg.message }))
 	// 	} else {
 	// 		console.log(err)
@@ -77,7 +85,28 @@ function* registrationWorker({
 	// }
 }
 
+function* checkAuthWorker() {
+	try {
+		yield put( setStatusLoading({isLoading: true}))
+		const response: AxiosResponse<IAuthResponse> = yield call(
+			UserService.checkAuth
+		)
+		localStorage.setItem('token', response.data.accessToken)
+		yield put(setUserData(response.data.user))
+	} catch (err: unknown | AxiosError<IDataServerError>) {
+
+		
+
+	} finally {
+		yield put( setStatusLoading({isLoading: false}))
+	}
+}
+
 // Watchers
+
+export function* checkAuth() {
+	yield takeEvery(authActionTypes.CHECK_AUTH, checkAuthWorker)
+}
 
 export function* loginWatcher() {
 	yield takeEvery(authActionTypes.LOGIN, loginWorker)

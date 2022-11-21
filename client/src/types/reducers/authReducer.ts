@@ -1,9 +1,9 @@
 export enum authActionTypes {
 	'LOGIN' = 'LOGIN',
 	'REGISTRATION' = 'REGISTRATION',
-	'GET_USER' = 'GET_USER',
+	'CHECK_AUTH' = 'CHECK_AUTH',
 	'UPDATE' = 'UPDATE',
-	'SAVE_USER_DATA' = 'SAVE_USER_DATA',
+	'SET_USER_DATA' = 'SET_USER_DATA',
 	'SET_STATUS_LOADING' = 'SET_STATUS_LOADING',
 	'SET_ERROR_LOGIN_MESSAGE' = 'SET_ERROR_LOGIN_MESSAGE',
 	'SET_ERROR_REG_MESSAGE' = 'SET_ERROR_REG_MESSAGE',
@@ -91,21 +91,19 @@ interface ISetAuthStatus {
 	payload: setAuthStatusPayload
 }
 
-interface IGetUser {
-	type: authActionTypes.GET_USER
+interface ICheckAuth {
+	type: authActionTypes.CHECK_AUTH
 }
 
-export type saveUserDataPayload = {
-	username: string
+export type setUserDataPayload = {
+	username: string,
 	avatar: string
 }
 
-interface ISaveUserData {
-	type: authActionTypes.SAVE_USER_DATA
-	payload: saveUserDataPayload
+interface ISetUserData {
+	type: authActionTypes.SET_USER_DATA
+	payload: IUser
 }
-
-
 
 export type IAction =
 	| ILogin
@@ -115,6 +113,6 @@ export type IAction =
 	| ISetRegErrorMessage
 	| ISetLoginErrorMessage
 	| ISetAuthStatus
-	| IGetUser
-	| ISaveUserData
+	| ICheckAuth
+	| ISetUserData
 	| ISetUserDataErrorMessage
