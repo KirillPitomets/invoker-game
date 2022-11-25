@@ -16,12 +16,12 @@ export class UserService {
 	static async registration({
 		username,
 		password,
-		confirmationPassword,
+		passwordConfirmation,
 	}: IRegistration): Promise<AxiosResponse<IAuthResponse>> {
 		return $api.post<IAuthResponse>('/registration', {
 			username,
 			password,
-			confirmationPassword,
+			passwordConfirmation,
 		})
 	}
 

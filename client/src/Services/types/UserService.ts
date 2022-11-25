@@ -1,7 +1,7 @@
 export interface IRegistration {
 	username: string
 	password: string
-	confirmationPassword: string
+	passwordConfirmation: string
 }
 
 export interface ILogin {
