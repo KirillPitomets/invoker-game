@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 // ==== Types ====
 import { idSpellEnum } from '../../types/spells'
 import { sphereNameEnum } from '../../types/spheres'
@@ -6,6 +7,7 @@ import { sphereNameEnum } from '../../types/spheres'
 import { bindsActiveSpells, bindsSpheres } from './binds'
 // ==== Redux ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { resetAllBinds } from '../../store/action-creators/hotkeys'
 import { useDispatch } from 'react-redux'
 // ==== Utils ====
 import { defineKey } from '../../utils/defineKey'
@@ -17,10 +19,8 @@ import cn from 'classnames'
 // ==== Components ====
 import SpellWithHotKey from '../UI/SpellWithHotKey'
 import Button from '../UI/Button'
-import { resetAllBinds } from '../../store/action-creators/hotkeys'
-import Notification, { stylesNotification } from '../Notification'
+import Notification, { animations, stylesNotification } from '../Notification'
 import HotKeyPopUp from '../HotKeyPopUp'
-import { CSSTransition } from 'react-transition-group'
 
 const Hotkeys = () => {
 	const dispatch = useDispatch()
@@ -40,14 +40,6 @@ const Hotkeys = () => {
 
 	const getSpherePhoto = (sphereId: sphereNameEnum): string => {
 		return allSpheres.find(sphere => sphere.id === sphereId)?.photoUrl!
-	}
-
-	const operationCompletedSuccessfully = (ms: number) => {
-		setIsCompletedSuccessfully(true)
-
-		setTimeout(() => {
-			setIsCompletedSuccessfully(false)
-		}, ms)
 	}
 
 	return (
@@ -101,23 +93,21 @@ const Hotkeys = () => {
 				<Button
 					onClick={() => {
 						handleAllBinds()
-						operationCompletedSuccessfully(2000)
+						setIsCompletedSuccessfully(true)
 					}}
 				>
 					Reset all binds
 				</Button>
 
-				<CSSTransition
-					in={isCompletedSuccessfully}
-					timeout={300}
-					unmountOnExit
-					classNames='smooth-opacity'
-				>
+				{isCompletedSuccessfully ? (
 					<Notification
+						delay={2000}
+						functionAfterAnimatin={() => setIsCompletedSuccessfully(false)}
+						animation={animations.smoothOpacity}
 						description='Hot keys reset successfully'
 						styleNotification={stylesNotification.success}
 					/>
-				</CSSTransition>
+				) : null}
 			</div>
 		</>
 	)
