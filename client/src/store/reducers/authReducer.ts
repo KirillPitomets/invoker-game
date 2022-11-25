@@ -11,8 +11,8 @@ const initialState: IState = {
 	},
 	isAuth: false,
 	isLoading: false,
-	errMessages: { reg: '', login: '' },
-	userDataErrMessage: '',
+	errMessages: { reg: [], login: [] },
+	userAuthErrMessage: '',
 }
 
 export const authReducer = (state = initialState, action: IAction): IState => {
@@ -38,8 +38,8 @@ export const authReducer = (state = initialState, action: IAction): IState => {
 		case authActionTypes.SET_USER_DATA:
 			return { ...state, user: action.payload }
 
-		case authActionTypes.SET_USER_DATA_ERROR_MESSAGE:
-			return { ...state, userDataErrMessage: action.payload.message }
+		case authActionTypes.SET_USER_AUTH_ERROR_MESSAGE:
+			return { ...state, userAuthErrMessage: action.payload.message }
 
 		default:
 			return state
