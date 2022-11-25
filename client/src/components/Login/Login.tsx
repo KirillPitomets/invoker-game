@@ -35,7 +35,7 @@ const Login = () => {
 	})
 
 	const dispatch = useDispatch()
-	const { errMessages: errMessageFromServer, isAuth } = useTypedSelector(
+	const { errMessages: errMessageFromServer, userAuthErrMessage, isAuth } = useTypedSelector(
 		state => state.auth
 	)
 
@@ -76,7 +76,8 @@ const Login = () => {
 				errors={[
 					errors.username?.message!,
 					errors.password?.message!,
-					errMessageFromServer.login,
+					userAuthErrMessage,
+					...errMessageFromServer.login,
 				]}
 			/>
 

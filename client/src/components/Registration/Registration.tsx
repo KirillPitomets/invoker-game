@@ -39,7 +39,7 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const { isAuth, errMessages: errMessageFromServer } = useTypedSelector(
+	const { isAuth, errMessages: errMessageFromServer, userAuthErrMessage } = useTypedSelector(
 		state => state.auth
 	)
 
@@ -71,7 +71,7 @@ const Registration = () => {
 
 			<PasswordField
 				placeholder='Confirm Password'
-				registerInForm={register(InputsName.confirmationPassword, {
+				registerInForm={register(InputsName.passwordConfirmation, {
 					required: true,
 				})}
 				labelClassName={cl.label}
@@ -81,8 +81,9 @@ const Registration = () => {
 				errors={[
 					errors.username?.message!,
 					errors.password?.message!,
-					errors.confirmationPassword?.message!,
-					errMessageFromServer.reg,
+					errors.passwordConfirmation?.message!,
+					userAuthErrMessage,
+					...errMessageFromServer.reg,
 				]}
 			/>
 			<Button className={cl.submit}>Registration</Button>
