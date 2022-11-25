@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+// ==== Assets ====
+import defaultAvatar from '../../assets/defaultAvatar.jpg'
 // ==== hooks ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 // ==== Styles ====
 import cl from './App.module.scss'
-// ==== Types ====
-import { authActionTypes } from '../../types/reducers/authReducer'
 // ==== Redux ====
 import { useDispatch } from 'react-redux'
 import { checkAuth } from '../../store/action-creators/auth'
@@ -13,15 +13,13 @@ import Container from '../Container'
 import Avatar from '../Avatar'
 import UserNickName from '../UserNickName/UserNickName'
 import Header from '../Header'
-import PopUp from '../PopUp'
 import GameScene from '../GameScene'
-import Notification, { stylesNotification } from '../Notification'
+import Notification, { animations, stylesNotification } from '../Notification'
+import MainPopUp from '../MainPopUp'
 
 const App = () => {
-	const { user, userDataErrMessage } = useTypedSelector(state => state.auth)
-	const { customBgUrl, isHideSpellList } = useTypedSelector(
-		state => state.theme
-	)
+	const { user, userAuthErrMessage } = useTypedSelector(state => state.auth)
+	const { customBgUrl } = useTypedSelector(state => state.theme)
 
 	const dispatch = useDispatch()
 
@@ -31,22 +29,31 @@ const App = () => {
 
 	return (
 		<div className={cl.app}>
-			<PopUp />
-			<Header />
-			{userDataErrMessage ? (
-				<Notification styleNotification={stylesNotification.error} title={userDataErrMessage} />
-			) : null}
+			<MainPopUp />
 
-			<Notification styleNotification={stylesNotification.error} title={userDataErrMessage} />
+			<Header />
 
 			<div
 				className={cl.bg}
 				style={customBgUrl ? { backgroundImage: `url(${customBgUrl})` } : {}}
 			></div>
 
-			<Container>
+			<Container className={cl['container_overflow-hidden']}>
+				{userAuthErrMessage ? (
+					<Notification
+						animation={animations.smoothOpacity}
+						delay={2000}
+						styleNotification={stylesNotification.error}
+						title='Authorization error'
+						description={userAuthErrMessage}
+					/>
+				) : null}
+
 				<div className={cl.avatar}>
-					<Avatar name={user.username} photoUrl={user.avatar} />
+					<Avatar
+						name={user.username}
+						photoUrl={user.avatar || defaultAvatar}
+					/>
 					<UserNickName
 						name={user.username || 'Login / Register'}
 						className={cl['user-name_marg']}
