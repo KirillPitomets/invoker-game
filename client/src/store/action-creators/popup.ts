@@ -1,11 +1,11 @@
 import { PopUpActionTypes } from "../../types/reducers/popUpReducer"
 
-export const hideSettingsPopup = () => {
-	return {type: PopUpActionTypes.SETTINGS_POPUP_HIDE}
+export const hideMainPopUp = () => {
+	return {type: PopUpActionTypes.MAIN_POPUP_HIDE}
 }
 
-export const showSettingsPopup = () => {
-	return {type: PopUpActionTypes.SETTINGS_POPUP_SHOW}
+export const showMainPopUp = () => {
+	return {type: PopUpActionTypes.MAIN_POPUP_SHOW}
 }
 
 export const hideHotkeySwitchPopup = () => {

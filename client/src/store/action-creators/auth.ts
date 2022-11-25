@@ -7,7 +7,8 @@ import {
 	ErrorMessagePayload,
 	setAuthStatusPayload,
 	registrationPayload,
-	setUserDataPayload,
+	UserAuthErrorPayload,
+
 } from '../../types/reducers/authReducer'
 
 export const setStatusLoading = (payload: setStatusLoadingPayload): IAction => {
@@ -42,8 +43,8 @@ export const setUserData = (payload: IUser): IAction => {
 	return { type: authActionTypes.SET_USER_DATA, payload }
 }
 
-export const setUserDataErrorMessage = (
-	payload: ErrorMessagePayload
+export const setUserAuthErrorMessage = (
+	payload: UserAuthErrorPayload
 ): IAction => {
-	return { type: authActionTypes.SET_USER_DATA_ERROR_MESSAGE, payload }
+	return { type: authActionTypes.SET_USER_AUTH_ERROR_MESSAGE, payload }
 }
