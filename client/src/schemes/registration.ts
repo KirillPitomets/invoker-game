@@ -1,13 +1,15 @@
-import * as yup from 'yup'
+import { object, string } from 'yup'
 
-const registrationSchema = yup
-	.object({
-		username: yup.string().required('Username is required').min(2).max(16),
-		password: yup.string().required('Password is required').min(8).max(16),
-		passwordConfirm: yup
-			.string()
-			.oneOf([yup.ref('password'), null], 'Confirm your password'),
-	})
-	.required()
+const registrationSchema = object({
+	username: string().required('Username is required').min(2).max(16),
+	password: string().required('Password is required').min(8).max(16),
+	passwordConfirmation: string().test(
+		'password-match',
+		'Confirm your password',
+		function (value) {
+			return this.parent.password === value
+		}
+	),
+}).required()
 
 export default registrationSchema
