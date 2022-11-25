@@ -1,21 +1,21 @@
 export enum PopUpActionTypes {
-	'SETTINGS_POPUP_SHOW' = 'SETTINGS_POPUP_SHOW',
-	'SETTINGS_POPUP_HIDE' = 'SETTINGS_POPUP_HIDE',
+	'MAIN_POPUP_SHOW' = 'MAIN_POPUP_SHOW',
+	'MAIN_POPUP_HIDE' = 'MAIN_POPUP_HIDE',
 	'HOTKEY_SWITCH_POPUP_SHOW' = 'HOTKEY_SWITCH_POPUP_SHOW',
 	'HOTKEY_SWITCH_POPUP_HIDE' = 'HOTKEY_SWITCH_POPUP_HIDE',
 }
 
 export interface IState {
-	isSettingsPopUpActive: boolean
+	isMainPopUpActive: boolean
 	isHotkeySwitchPopUpActive: boolean
 }
 
 interface IActionShowSettingsPopUp {
-	type: PopUpActionTypes.SETTINGS_POPUP_SHOW
+	type: PopUpActionTypes.MAIN_POPUP_SHOW
 }
 
 interface IActionHideSettingsPopUp {
-	type: PopUpActionTypes.SETTINGS_POPUP_HIDE
+	type: PopUpActionTypes.MAIN_POPUP_HIDE
 }
 
 interface IActionShowHotkeySwitchPopUp {

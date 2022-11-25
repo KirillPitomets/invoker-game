@@ -8,7 +8,7 @@ export enum authActionTypes {
 	'SET_ERROR_LOGIN_MESSAGE' = 'SET_ERROR_LOGIN_MESSAGE',
 	'SET_ERROR_REG_MESSAGE' = 'SET_ERROR_REG_MESSAGE',
 	'SET_AUTH_STATUS' = 'SET_AUTH_STATUS',
-	'SET_USER_DATA_ERROR_MESSAGE' = 'SET_USER_DATA_ERROR_MESSAGE'
+	'SET_USER_AUTH_ERROR_MESSAGE' = 'SET_USER_AUTH_ERROR_MESSAGE'
 }
 
 export interface IUser {
@@ -17,8 +17,8 @@ export interface IUser {
 }
 
 export type errMessagesType = {
-	reg: string
-	login: string
+	reg: string[]
+	login: string[]
 }
 
 export interface IState {
@@ -26,13 +26,13 @@ export interface IState {
 	isAuth: boolean
 	isLoading: boolean
 	errMessages: errMessagesType
-	userDataErrMessage: string 
+	userAuthErrMessage: string 
 }
 
 export type registrationPayload = {
 	username: string
 	password: string
-	confirmationPassword: string
+	passwordConfirmation: string
 }
 
 interface IRegistration {
@@ -64,7 +64,7 @@ interface ISetStatusLoading {
 }
 
 export type ErrorMessagePayload = {
-	message: string
+	message: string[]
 }
 
 interface ISetRegErrorMessage {
@@ -77,9 +77,13 @@ interface ISetLoginErrorMessage {
 	payload: ErrorMessagePayload
 }
 
-interface ISetUserDataErrorMessage {
-	type: authActionTypes.SET_USER_DATA_ERROR_MESSAGE
-	payload: ErrorMessagePayload
+export type UserAuthErrorPayload = {
+	message: string
+}
+
+interface ISetUserAuthErrorMessage {
+	type: authActionTypes.SET_USER_AUTH_ERROR_MESSAGE
+	payload: UserAuthErrorPayload
 }
 
 export type setAuthStatusPayload = {
@@ -115,4 +119,4 @@ export type IAction =
 	| ISetAuthStatus
 	| ICheckAuth
 	| ISetUserData
-	| ISetUserDataErrorMessage
+	| ISetUserAuthErrorMessage
