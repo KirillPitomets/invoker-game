@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // ==== Redux ====
 import { useDispatch } from 'react-redux'
-import { showSettingsPopup } from '../../store/action-creators/popup'
+import { showMainPopUp } from '../../store/action-creators/popup'
 // ==== Hooks ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 // ==== Types ====
@@ -20,7 +20,7 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const { isAuth } = useTypedSelector(state => state.auth)
 
-	const handlePopup = () => dispatch(showSettingsPopup())
+	const handlePopup = () => dispatch(showMainPopUp())
 
 	return (
 		<ul className={cn(cl.navbar, cl.navbar_marg)}>

@@ -1,1 +1,1 @@
-export {default, stylesNotification} from './Notification'
+export {default, stylesNotification, animations} from './Notification'

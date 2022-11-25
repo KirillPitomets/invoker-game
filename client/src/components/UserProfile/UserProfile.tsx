@@ -12,7 +12,9 @@ import Avatar from '../Avatar'
 // ==== Components ====
 
 const UserProfile = () => {
-	const { isAuth, user, userDataErrMessage } = useTypedSelector(state => state.auth)
+	const { isAuth, user, userAuthErrMessage } = useTypedSelector(
+		state => state.auth
+	)
 	console.log(user)
 
 	const navigate = useNavigate()
@@ -21,9 +23,7 @@ const UserProfile = () => {
 		if (!isAuth) navigate(`/${RouteEnum.auth}`)
 	}, [isAuth])
 
-	if (userDataErrMessage) return (
-		<ErrorMessage errors={[userDataErrMessage]} />
-	)
+	if (userAuthErrMessage) return <ErrorMessage errors={[userAuthErrMessage]} />
 
 	return (
 		<div>

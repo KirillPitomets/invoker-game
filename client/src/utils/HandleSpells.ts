@@ -18,7 +18,7 @@ store.subscribe(() => {
 	hotkeys = store.getState().hotkeys.hotkeys;
 
 	isStartedChallenge = challenge.isChallengeStarted
-	isActivePopUp = popUp.isSettingsPopUpActive
+	isActivePopUp = popUp.isMainPopUpActive
 })
 
 export default function handleSpells(e: KeyboardEvent) {
