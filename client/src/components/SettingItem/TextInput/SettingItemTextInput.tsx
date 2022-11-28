@@ -3,7 +3,7 @@ import React, { FC, InputHTMLAttributes } from 'react'
 import cl from '../SettingItem.module.scss'
 import cn from 'classnames'
 // ==== Components ====
-import TextInput from '../../UI/TextInput'
+import Input from '../../UI/Input'
 import Title from '../../UI/Title'
 import ResetBtn from '../../UI/ResetBtn'
 
@@ -22,7 +22,6 @@ const SettingItemTextInput: FC<ISettingItemTextInput> = ({
 	hasResetBtn,
 	resetFunction,
 	...props
-
 }) => {
 	return (
 		<label htmlFor={id} className={cn(cl.label, cl.label_pad, cl.label_marg)}>
@@ -32,7 +31,7 @@ const SettingItemTextInput: FC<ISettingItemTextInput> = ({
 			</div>
 
 			<div>
-				<TextInput id={id} {...props} />
+				<Input id={id} {...props} />
 				{hasResetBtn && (
 					<ResetBtn className={cl.btn_marg} onClick={resetFunction} />
 				)}
