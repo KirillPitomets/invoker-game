@@ -1,0 +1,22 @@
+@import '../../../styles/components/variables';
+
+.input {
+	color: $font-color;
+
+	border-radius: 4px;
+	border: 1px solid $font-color;
+
+	background: transparent;
+
+	transition: box-shadow 0.2s ease;
+
+	&:focus {
+		box-shadow: 0 0 5px 1px $font-color;
+	}
+
+	// ==== Modifiers ====
+	&_pad {
+		padding: .5rem;
+	}
+}
+
