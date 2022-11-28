@@ -6,15 +6,18 @@ import lock from '../../assets/icons/lock.svg'
 // ==== Styles ====
 import cl from './PasswordField.module.scss'
 import cn from 'classnames'
+import ButtonEye from '../UI/ButtonEye'
 
 interface IPasswordField extends InputHTMLAttributes<HTMLInputElement> {
 	registerInForm?: any
 	labelClassName?: string
+	withIcon?: boolean
 }
 
 const PasswordField: FC<IPasswordField> = ({
 	registerInForm,
 	labelClassName,
+	withIcon = true,
 	...props
 }) => {
 	const [isShowPassword, setIsShowPassword] = useState<boolean>(false)
@@ -25,7 +28,9 @@ const PasswordField: FC<IPasswordField> = ({
 
 	return (
 		<label className={cn(cl.inner, labelClassName)}>
-			<img className={cn(cl.icon, cl.icon_marg)} src={lock} alt='the lock' />
+			{withIcon ? (
+				<img className={cn(cl.icon, cl.icon_marg)} src={lock} alt='the lock' />
+			) : null}
 
 			<div className={cl.wrap}>
 				<input
@@ -34,25 +39,10 @@ const PasswordField: FC<IPasswordField> = ({
 					{...registerInForm}
 					{...props}
 				/>
-
-				<div
-					tabIndex={-1}
-					className={cl['view-password-btn']}
-					onClick={e => {
-						e.preventDefault()
-						togglePasswordVisibility()
-					}}
-				>
-					{isShowPassword ? (
-						<img className={cl.eye} src={eye} alt='Show password' />
-					) : (
-						<img
-							className={cl.eye}
-							src={crossedOutEye}
-							alt="Don't show password"
-						/>
-					)}
-				</div>
+				<ButtonEye
+					isShow={isShowPassword}
+					handleShow={togglePasswordVisibility}
+				/>
 			</div>
 		</label>
 	)
