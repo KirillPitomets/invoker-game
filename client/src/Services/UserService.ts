@@ -26,6 +26,10 @@ export class UserService {
 	}
 
 	static async checkAuth() {
-		return axios.get(`${API_URL}/refresh`, { withCredentials: true})
+		return axios.get(`${API_URL}/refresh`, { withCredentials: true })
+	}
+
+	static async logout() {
+		return axios.get(`${API_URL}/logout`, { withCredentials: true })
 	}
 }
