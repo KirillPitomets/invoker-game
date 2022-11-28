@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// ==== Assets ====
-import defaultAvatar from '../../assets/defaultAvatar.jpg'
 // ==== hooks ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 // ==== Styles ====
@@ -11,7 +9,7 @@ import { checkAuth } from '../../store/action-creators/auth'
 // ==== Components ====
 import Container from '../Container'
 import Avatar from '../Avatar'
-import UserNickName from '../UserNickName/UserNickName'
+import UserNickName from '../UserNickName'
 import Header from '../Header'
 import GameScene from '../GameScene'
 import Notification, { animations, stylesNotification } from '../Notification'
@@ -52,7 +50,7 @@ const App = () => {
 				<div className={cl.avatar}>
 					<Avatar
 						name={user.username}
-						photoUrl={user.avatar || defaultAvatar}
+						photoUrl={user.avatar}
 					/>
 					<UserNickName
 						name={user.username || 'Login / Register'}
