@@ -3,9 +3,10 @@ $secondary-font: 'Inter', sans-serif;
 
 $white: #fff;
 $black: #000000;
-$dark-gray: #3d3d3d;
+$light-black: #0F0F0F;
+$gray: #3d3d3d;
+$light-gray: #292929;
 $light-gray: #c4c4c4;
-$light-black: #292929;
 $dark-blue: #1c1a24;
 $deep-green: #2bae2b;
 $red: #ff0000;
@@ -16,8 +17,11 @@ $exort-color: #a65d01;
 $quas-color: #6cb3d4;
 
 $main-bg-color: $light-black;
-$decor-color: $dark-gray;
+$decor-color: $gray;
 $secondary-decor-color: $light-black;
+
+$black-transparent: rgba($black, .9);
+$gray-transparent: rgba($gray, .3);
 
 $hotkeys-popup-bg: rgba(#424242, 0.95);
 
