@@ -4,7 +4,7 @@ export default function useTimeout<A extends unknown, R extends unknown>(
 	cb: (args?: A) => R,
 	delay: number
 ) {
-	const savedCallBack = useRef<(args?: A) => R>(null!)
+	const savedCallBack = useRef<(args?: A) => R>(cb)
 
 	useEffect(() => {
 		savedCallBack.current = cb
