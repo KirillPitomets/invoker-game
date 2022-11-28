@@ -13,7 +13,7 @@ interface IPopUP {
 	children?: ReactNode
 	delay: number
 	isActive: boolean
-	setIsActive: () => void
+	closePopUp: () => void
 	hideAllInternalPopUps?: () => void
 }
 
@@ -22,16 +22,16 @@ const PopUp: FC<IPopUP> = ({
 	delay,
 	hideAllInternalPopUps,
 	isActive,
-	setIsActive,
+	closePopUp,
 }) => {
+
+
 	const hidePopUP = () => {
 		if (hideAllInternalPopUps) {
 			hideAllInternalPopUps()
 		}
 
-		useTimeout(() => {
-			setIsActive()
-		}, delay) // For animation. CSSTransition
+		closePopUp()
 	}
 
 	return (
