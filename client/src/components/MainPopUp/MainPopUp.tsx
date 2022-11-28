@@ -23,7 +23,7 @@ const MainPopUp = () => {
 	return (
 		<PopUp
 			isActive={isMainPopUpActive}
-			setIsActive={() => dispatch(hideMainPopUp())}
+			closePopUp={() => dispatch(hideMainPopUp())}
 			hideAllInternalPopUps={hideAllInternalPopUps}
 			delay={300}
 		>
