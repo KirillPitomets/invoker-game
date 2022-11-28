@@ -23,7 +23,7 @@ import { IRegistration } from '../../Services/types/UserService'
 import cl from './Registration.module.scss'
 // ==== components ====
 import Button from '../UI/Button'
-import FormField, { fieldTypeEnum } from '../FormField'
+import TextField from '../TextField'
 import ErrorMessage from '../UI/ErrorMessage'
 import PasswordField from '../PasswordField'
 
@@ -57,8 +57,7 @@ const Registration = () => {
 
 	return (
 		<form className={cl.form} onSubmit={handleSubmit(debounceCallBack)}>
-			<FormField
-				fieldType={fieldTypeEnum.user}
+			<TextField
 				reg={register(InputsName.username, { required: true })}
 				placeholder='Nickname'
 			/>

@@ -20,7 +20,7 @@ import { InputsName, loginFormData } from '../../types/loginFormData'
 import cl from './Login.module.scss'
 import cn from 'classnames'
 // ==== Components ====
-import FormField, { fieldTypeEnum } from '../FormField'
+import TextField from '../TextField'
 import Button from '../UI/Button'
 import PasswordField from '../PasswordField'
 import ErrorMessage from '../UI/ErrorMessage'
@@ -35,9 +35,11 @@ const Login = () => {
 	})
 
 	const dispatch = useDispatch()
-	const { errMessages: errMessageFromServer, userAuthErrMessage, isAuth } = useTypedSelector(
-		state => state.auth
-	)
+	const {
+		errMessages: errMessageFromServer,
+		userAuthErrMessage,
+		isAuth,
+	} = useTypedSelector(state => state.auth)
 
 	const formSubmit: SubmitHandler<loginFormData> = data => {
 		dispatch(login(data))
@@ -55,8 +57,7 @@ const Login = () => {
 
 	return (
 		<form className={cl.form} onSubmit={handleSubmit(debounceCallBack)}>
-			<FormField
-				fieldType={fieldTypeEnum.user}
+			<TextField
 				reg={register(InputsName.username, { required: true })}
 				placeholder='Nickname'
 			/>
