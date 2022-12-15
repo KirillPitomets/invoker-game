@@ -3,8 +3,8 @@ import { allSpheres } from './../../global/allSpheres'
 import { allSpellsData } from '../../global/allSpells'
 // ==== Types ====
 import { actionType, ActionTypes, State } from '../../types/reducers/themeReducer'
-import { iconSetsEnum } from './../../types/theSets'
-import { spellIconsEnum } from '../../types/spellIcons'
+import { iconSetsEnum } from '../../types/themes/theSets'
+import { spellIconsEnum } from '../../types/themes/spellIcons'
 import { sphereNameEnum } from '../../types/spheres'
 // ==== Utils ====
 import { getSpellIconsNameFromLocalStorage } from '../../utils/getSpellIconsNameFromLocalStorage'

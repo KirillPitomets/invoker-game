@@ -1,6 +1,6 @@
 import { quasIcons, wexIcons, exortIcons, forgeIcons, ghostWalkIcons, sunStrikeIcons } from '../global/allSpellAndSpheresIcons'
 
-import { iconSetsEnum } from '../types/theSets'
+import { iconSetsEnum } from '../types/themes/theSets'
 
 export interface ISet {
 	id: iconSetsEnum

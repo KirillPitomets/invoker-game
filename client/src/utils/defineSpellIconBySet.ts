@@ -1,5 +1,5 @@
 import { idSpellEnum } from "../types/spells"
-import { iconSetsEnum } from "../types/theSets"
+import { iconSetsEnum } from "../types/themes/theSets"
 import { getSpellIconForgeSpirit, getSpellIconGhostWalk, getSpellIconSunStrike } from "./getSpellIcon"
 
 export type defineSpellIconBySetType = {

@@ -1,4 +1,4 @@
-import { ISpellIcon, spellIconsEnum } from '../types/spellIcons'
+import { ISpellIcon, spellIconsEnum } from '../types/themes/spellIcons'
 // ==== Imgs ====
 import { alacrityIcons, blastIcons, forgeIcons, tornadoIcons } from './allSpellAndSpheresIcons'
 

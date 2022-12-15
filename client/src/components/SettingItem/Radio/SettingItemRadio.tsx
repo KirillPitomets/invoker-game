@@ -6,7 +6,7 @@ import { changeIconsSet } from '../../../store/action-creators/theme'
 // ==== Types ====
 import { ISettingItem } from '../types'
 import { ISet } from '../../../global/theSets'
-import { iconSetsEnum } from '../../../types/theSets'
+import { iconSetsEnum } from '../../../types/themes/theSets'
 // ==== Styles ====
 import cl from '../SettingItem.module.scss'
 import cn from 'classnames'

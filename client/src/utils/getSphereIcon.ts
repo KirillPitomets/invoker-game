@@ -1,6 +1,6 @@
 // ==== Types ====
 import { sphereNameEnum } from "../types/spheres"
-import { iconSetsEnum } from "../types/theSets"
+import { iconSetsEnum } from "../types/themes/theSets"
 // ==== Spell icons ====
 import { exortIcons, quasIcons, wexIcons } from "../global/allSpellAndSpheresIcons"
 

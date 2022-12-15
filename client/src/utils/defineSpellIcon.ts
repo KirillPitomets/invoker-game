@@ -1,4 +1,4 @@
-import { spellIconsEnum } from "../types/spellIcons"
+import { spellIconsEnum } from "../types/themes/spellIcons"
 import { idSpellEnum } from "../types/spells"
 import { getSpellIconAlacrity, getSpellIconBlast, getSpellIconForgeSpirit, getSpellIconTornado } from "./getSpellIcon"
 

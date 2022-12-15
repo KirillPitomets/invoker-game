@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../../../hooks/useTypedSelector'
 import { changeIconsSpells } from '../../../store/action-creators/theme'
 // ==== Types ====
-import { ISpellIcon, spellIconsEnum } from '../../../types/spellIcons'
+import { ISpellIcon, spellIconsEnum } from '../../../types/themes/spellIcons'
 import { ISettingItem } from '../types'
 // ==== Styles ====
 import cl from '../SettingItem.module.scss'

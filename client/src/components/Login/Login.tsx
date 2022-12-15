@@ -15,7 +15,7 @@ import { useDebounce } from '../../hooks/useDebounce'
 import { SubmitHandler, useForm } from 'react-hook-form'
 // ==== Types ====
 import { RouteEnum } from '../../types/route'
-import { InputsName, loginFormData } from '../../types/loginFormData'
+import { InputsName, loginFormData } from '../../types/form/loginFormData'
 // ==== Styles ====
 import cl from './Login.module.scss'
 import cn from 'classnames'

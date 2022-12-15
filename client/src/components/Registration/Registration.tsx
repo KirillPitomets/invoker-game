@@ -16,7 +16,7 @@ import { registration } from '../../store/action-creators/auth'
 // ==== Types ====
 import {
 	InputsName,
-} from '../../types/regInputsName'
+} from '../../types/form/regInputsName'
 import { RouteEnum } from '../../types/route'
 import { IRegistration } from '../../Services/types/UserService'
 // ==== Styles ====

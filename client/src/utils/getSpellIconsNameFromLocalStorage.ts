@@ -1,4 +1,4 @@
-import { spellIconsEnum, allSpellIcons } from "../types/spellIcons"
+import { spellIconsEnum, allSpellIcons } from "../types/themes/spellIcons"
 
 
 export const getSpellIconsNameFromLocalStorage = (): spellIconsEnum[] => {
