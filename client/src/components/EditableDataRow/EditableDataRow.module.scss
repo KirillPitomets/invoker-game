@@ -1,0 +1,44 @@
+@import '../../styles/components/variables';
+
+.box {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 0.5rem 0.6rem;
+
+	border-radius: 0.5rem;
+
+	background: $light-black;
+}
+
+.title {
+	&_marg {
+		margin-bottom: 0.5rem;
+	}
+}
+
+
+.input-wrapper {
+	width: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	gap: .5rem;
+}
+
+.btns {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	
+	gap: 0.5rem;
+
+	&_marg {
+		margin-top: 0.5rem;
+	}
+}
+
