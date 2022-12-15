@@ -16,9 +16,9 @@ import Notification, { animations, stylesNotification } from '../Notification'
 import MainPopUp from '../MainPopUp'
 
 const App = () => {
-	const { user, userAuthErrMessage } = useTypedSelector(state => state.auth)
+	const { user } = useTypedSelector(state => state.auth)
 	const { customBgUrl } = useTypedSelector(state => state.theme)
-
+	const { refreshAuthorizationError } = useTypedSelector(state => state.error)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -37,13 +37,13 @@ const App = () => {
 			></div>
 
 			<Container className={cl['container_overflow-hidden']}>
-				{userAuthErrMessage ? (
+				{refreshAuthorizationError ? (
 					<Notification
 						animation={animations.smoothOpacity}
 						delay={2000}
 						styleNotification={stylesNotification.error}
 						title='Authorization error'
-						description={userAuthErrMessage}
+						description={refreshAuthorizationError}
 					/>
 				) : null}
 

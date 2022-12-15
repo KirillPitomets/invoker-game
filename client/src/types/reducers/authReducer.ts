@@ -1,3 +1,5 @@
+import { IUser } from "../../models/IUser"
+
 export enum authActionTypes {
 	'LOGIN' = 'LOGIN',
 	'REGISTRATION' = 'REGISTRATION',
@@ -11,22 +13,10 @@ export enum authActionTypes {
 	'SET_USER_AUTH_ERROR_MESSAGE' = 'SET_USER_AUTH_ERROR_MESSAGE'
 }
 
-export interface IUser {
-	username: string
-	avatar: string
-}
-
-export type errMessagesType = {
-	reg: string[]
-	login: string[]
-}
-
 export interface IState {
 	user: IUser
 	isAuth: boolean
 	isLoading: boolean
-	errMessages: errMessagesType
-	userAuthErrMessage: string 
 }
 
 export type registrationPayload = {
@@ -63,29 +53,6 @@ interface ISetStatusLoading {
 	payload: setStatusLoadingPayload
 }
 
-export type ErrorMessagePayload = {
-	message: string[]
-}
-
-interface ISetRegErrorMessage {
-	type: authActionTypes.SET_ERROR_REG_MESSAGE
-	payload: ErrorMessagePayload
-}
-
-interface ISetLoginErrorMessage {
-	type: authActionTypes.SET_ERROR_LOGIN_MESSAGE
-	payload: ErrorMessagePayload
-}
-
-export type UserAuthErrorPayload = {
-	message: string
-}
-
-interface ISetUserAuthErrorMessage {
-	type: authActionTypes.SET_USER_AUTH_ERROR_MESSAGE
-	payload: UserAuthErrorPayload
-}
-
 export type setAuthStatusPayload = {
 	isAuth: boolean
 }
@@ -114,9 +81,6 @@ export type IAction =
 	| IRegistration
 	| IUpdate
 	| ISetStatusLoading
-	| ISetRegErrorMessage
-	| ISetLoginErrorMessage
 	| ISetAuthStatus
 	| ICheckAuth
 	| ISetUserData
-	| ISetUserAuthErrorMessage

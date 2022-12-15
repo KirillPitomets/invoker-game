@@ -24,13 +24,16 @@ router.post(
 	}),
 	UserController.registration
 )
+
 router.post(
 	'/login',
 	body('username').isLength({ min: 3, max: 16 }),
 	body('password').isLength({ min: 8, max: 16 }),
 	UserController.login
 )
+
 router.post('/logout', authMiddleware, UserController.logout)
+
 router.get('/refresh', UserController.refresh)
 
 router.put(
@@ -41,6 +44,7 @@ router.put(
 	authMiddleware,
 	UserController.changeUsername
 )
+
 router.put(
 	'/password',
 	body('password')
@@ -51,6 +55,6 @@ router.put(
 )
 router.put('/avatar', authMiddleware, UserController.changeAvatar)
 
+router.get('/logout', authMiddleware, UserController.logout)
+
 module.exports = router
-
-

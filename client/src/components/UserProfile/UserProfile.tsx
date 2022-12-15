@@ -15,9 +15,8 @@ import Button from '../UI/Button'
 import { UserService } from '../../Services/UserService'
 
 const UserProfile = () => {
-	const { isAuth, user, userAuthErrMessage } = useTypedSelector(
-		state => state.auth
-	)
+	const { isAuth, user } = useTypedSelector(state => state.auth)
+	const { refreshAuthorizationError } = useTypedSelector(state => state.error)
 
 	const navigate = useNavigate()
 
@@ -25,7 +24,8 @@ const UserProfile = () => {
 		if (!isAuth) navigate(`/${RouteEnum.auth}`)
 	}, [isAuth])
 
-	if (userAuthErrMessage) return <ErrorMessage errors={[userAuthErrMessage]} />
+	if (refreshAuthorizationError)
+		return <ErrorMessage errors={[refreshAuthorizationError]} />
 
 	return (
 		<div className={cl.wrapper}>
@@ -51,9 +51,7 @@ const UserProfile = () => {
 				/>
 			</div>
 
-			<Button onClick={() => UserService.logout()}>
-				Logout
-			</Button>
+			<Button onClick={() => UserService.logout()}>Logout</Button>
 		</div>
 	)
 }

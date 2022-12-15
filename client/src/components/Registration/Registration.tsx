@@ -39,9 +39,11 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const { isAuth, errMessages: errMessageFromServer, userAuthErrMessage } = useTypedSelector(
+	const { isAuth } = useTypedSelector(
 		state => state.auth
 	)
+
+	const { registrationError, refreshAuthorizationError } = useTypedSelector( state => state.error)
 
 	const formSubmit: SubmitHandler<IRegistration> = data => {
 		dispatch(registration(data))
@@ -81,8 +83,8 @@ const Registration = () => {
 					errors.username?.message!,
 					errors.password?.message!,
 					errors.passwordConfirmation?.message!,
-					userAuthErrMessage,
-					...errMessageFromServer.reg,
+					refreshAuthorizationError,
+					...registrationError,
 				]}
 			/>
 			<Button className={cl.submit}>Registration</Button>

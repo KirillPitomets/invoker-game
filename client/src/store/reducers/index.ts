@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 // ==== Reducers ====
+import { errorReducer } from './errorReducer';
 import { spellReducer } from "./spellReducer";
 import { challengeReducer } from './challengeReducer';
 import { popUpReducer } from "./popUpReducer";
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers({
 	records: recordReducer,
 	theme: themeReducer,
 	hotkeys: hotkeyReducer,
-	auth: authReducer
+	auth: authReducer,
+	error: errorReducer
 })
 
 export type rootReducerType = ReturnType<typeof rootReducer>

@@ -6,11 +6,13 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import {
 	setUserData,
 	setAuthStatus,
-	setLoginErrorMessage,
-	setRegErrorMessage,
 	setStatusLoading,
-	setUserAuthErrorMessage,
 } from '../../action-creators/auth'
+import {
+	setLoginErrorMessages,
+	setRegErrorMessages,
+	setRefreshAuthErrorMessage,
+} from '../../action-creators/error'
 // ==== Types ====
 import {
 	authActionTypes,
@@ -50,7 +52,7 @@ function* loginWorker({
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER IS NOT WORKING
 				yield put(
-					setUserAuthErrorMessage({ message: 'The server is down. Try later' })
+					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
 				)
 			} else {
 				const errors = (err as AxiosError<IDataServerError>).response?.data
@@ -61,13 +63,13 @@ function* loginWorker({
 						arrayOfErrors.push(errors?.errors[indx].msg)
 					}
 
-					yield put(setLoginErrorMessage({ message: arrayOfErrors }))
+					yield put(setLoginErrorMessages({ messages: arrayOfErrors }))
 				}
 			}
 		} else {
 			yield put(
-				setLoginErrorMessage({
-					message: ["I'm Sorry :) An unexpected error has occured"],
+				setLoginErrorMessages({
+					messages: ["I'm Sorry :) An unexpected error has occured"],
 				})
 			)
 		}
@@ -102,7 +104,7 @@ function* registrationWorker({
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER ISN'T WORKING
 				yield put(
-					setUserAuthErrorMessage({ message: 'The server is down. Try later' })
+					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
 				)
 			} else {
 				const errors: IDataServerError | undefined = (
@@ -116,13 +118,13 @@ function* registrationWorker({
 						arrayOfErrors.push(errors?.errors[indx].msg)
 					}
 
-					yield put(setRegErrorMessage({ message: arrayOfErrors }))
+					yield put(setRegErrorMessages({ messages: arrayOfErrors }))
 				}
 			}
 		} else {
 			yield put(
-				setRegErrorMessage({
-					message: ["I'm Sorry :) An unexpected error has occured"],
+				setRegErrorMessages({
+					messages: ["I'm Sorry :) An unexpected error has occurred"],
 				})
 			)
 		}
@@ -145,7 +147,7 @@ function* checkAuthWorker() {
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER ISN'T WORKING
 				yield put(
-					setUserAuthErrorMessage({ message: 'The server is down. Try later' })
+					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
 				)
 			} else {
 				const errors: IDataServerError | undefined = (
@@ -153,13 +155,13 @@ function* checkAuthWorker() {
 				).response?.data!
 
 				if (errors.message) {
-					yield put(setUserAuthErrorMessage({ message: errors.message }))
+					yield put(setRefreshAuthErrorMessage({ message: errors.message }))
 				}
 			}
 		} else {
 			yield put(
-				setUserAuthErrorMessage({
-					message: "I'm Sorry :) An unexpected error has occured",
+				setRefreshAuthErrorMessage({
+					message: "I'm Sorry :) An unexpected error has occurred",
 				})
 			)
 		}
