@@ -1,6 +1,6 @@
 import { ISpell } from '../spells';
-import { iconSetsEnum } from '../theSets'
-import { spellIconsEnum } from '../spellIcons'
+import { iconSetsEnum } from '../themes/theSets'
+import { spellIconsEnum } from '../themes/spellIcons'
 import { ISphere } from '../spheres'
 
 export enum ActionTypes {
