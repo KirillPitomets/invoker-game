@@ -21,7 +21,8 @@ export const authReducer = (state = initialState, action: IAction): IState => {
 			return { ...state, isAuth: action.payload.isAuth }
 		case authActionTypes.SET_USER_DATA:
 			return { ...state, user: action.payload }
-
+		case authActionTypes.REMOVE_USER_DATA: 
+			return { ...state, user: initialState.user}
 		default:
 			return state
 	}
