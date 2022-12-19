@@ -13,13 +13,13 @@ interface IButtonEye {
 const ButtonEye:FC<IButtonEye> = ({isShow, handleShow}) => {
 
 	return (
-		<button className={cl['btn-show-password']} onClick={handleShow}>
+		<div className={cl['btn-show-password']} onClick={handleShow}>
 			{isShow ? (
 				<img src={eye} alt='Show password' className={cl.icon} />
 			) : (
 				<img src={crossedOutEye} alt='Show password' className={cl.icon} />
 			)}
-		</button>
+		</div>
 	)
 }
 
