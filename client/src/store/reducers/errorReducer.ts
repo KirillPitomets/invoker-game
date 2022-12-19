@@ -8,6 +8,7 @@ const initialState: IState = {
 	registrationError: [],
 	loginError: [],
 	refreshAuthorizationError: '',
+	isServerWorking: true,
 }
 
 export const errorReducer = (state = initialState, action: IAction): IState => {
@@ -18,6 +19,8 @@ export const errorReducer = (state = initialState, action: IAction): IState => {
 			return { ...state, registrationError: action.payload.messages }
 		case errorActionTypes.SET_REFRESH_AUTH_ERROR:
 			return { ...state, refreshAuthorizationError: action.payload.message }
+		case errorActionTypes.SET_IS_SERVER_WORKING:
+			return { ...state, isServerWorking: action.payload.isWorking}
 		default:
 			return state
 	}
