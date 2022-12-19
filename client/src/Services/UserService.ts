@@ -30,6 +30,6 @@ export class UserService {
 	}
 
 	static async logout() {
-		return axios.get(`${API_URL}/logout`, { withCredentials: true })
+		return $api.post('/logout')
 	}
 }
