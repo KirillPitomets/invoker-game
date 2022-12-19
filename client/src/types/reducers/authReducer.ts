@@ -3,6 +3,8 @@ import { IUser } from "../../models/IUser"
 export enum authActionTypes {
 	'LOGIN' = 'LOGIN',
 	'REGISTRATION' = 'REGISTRATION',
+	'LOGOUT' = 'LOGOUT',
+	'REMOVE_USER_DATA' = 'REMOVE_USER_DATA',
 	'CHECK_AUTH' = 'CHECK_AUTH',
 	'UPDATE' = 'UPDATE',
 	'SET_USER_DATA' = 'SET_USER_DATA',
@@ -76,6 +78,14 @@ interface ISetUserData {
 	payload: IUser
 }
 
+interface ILogout {
+	type: authActionTypes.LOGOUT
+}
+
+interface IRemoveUserData {
+	type: authActionTypes.REMOVE_USER_DATA
+}
+
 export type IAction =
 	| ILogin
 	| IRegistration
@@ -84,3 +94,5 @@ export type IAction =
 	| ISetAuthStatus
 	| ICheckAuth
 	| ISetUserData
+	| ILogout
+	| IRemoveUserData
