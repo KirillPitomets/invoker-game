@@ -43,7 +43,7 @@ const Registration = () => {
 		state => state.auth
 	)
 
-	const { registrationError, refreshAuthorizationError } = useTypedSelector( state => state.error)
+	const { registrationError, isServerWorking } = useTypedSelector( state => state.error)
 
 	const formSubmit: SubmitHandler<IRegistration> = data => {
 		dispatch(registration(data))
@@ -80,13 +80,14 @@ const Registration = () => {
 
 			<ErrorMessage
 				errors={[
+					!isServerWorking ? 'Server is not working now. Try later' : '',
 					errors.username?.message!,
 					errors.password?.message!,
 					errors.passwordConfirmation?.message!,
-					refreshAuthorizationError,
 					...registrationError,
 				]}
 			/>
+		
 			<Button className={cl.submit}>Registration</Button>
 		</form>
 	)

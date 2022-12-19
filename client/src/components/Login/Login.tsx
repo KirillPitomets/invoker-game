@@ -37,7 +37,7 @@ const Login = () => {
 	const dispatch = useDispatch()
 	const { isAuth } = useTypedSelector(state => state.auth)
 
-	const { refreshAuthorizationError, loginError} = useTypedSelector( state => state.error)
+	const { isServerWorking, loginError} = useTypedSelector( state => state.error)
 
 	const formSubmit: SubmitHandler<loginFormData> = data => {
 		dispatch(login(data))
@@ -73,9 +73,9 @@ const Login = () => {
 
 			<ErrorMessage
 				errors={[
+					!isServerWorking ? "Server is not working. Try later" : "",
 					errors.username?.message!,
 					errors.password?.message!,
-					refreshAuthorizationError,
 					...loginError,
 				]}
 			/>
