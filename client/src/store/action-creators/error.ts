@@ -4,6 +4,7 @@ import {
 	setLoginErrorPayload,
 	setRegistrationErrorPayload,
 	setRefreshAuthErrorPayload,
+	setIsServerWorkingPayload,
 } from '../../types/reducers/errorRedcuer'
 
 export const setRegErrorMessages = (
@@ -21,4 +22,10 @@ export const setRefreshAuthErrorMessage = (
 	payload: setRefreshAuthErrorPayload
 ): IAction => {
 	return { type: errorActionTypes.SET_REFRESH_AUTH_ERROR, payload }
+}
+
+export const setIsServerWorking = (
+	payload: setIsServerWorkingPayload
+): IAction => {
+	return { type: errorActionTypes.SET_IS_SERVER_WORKING, payload }
 }
