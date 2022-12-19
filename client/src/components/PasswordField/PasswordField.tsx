@@ -1,11 +1,10 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes, useState } from 'react'
+import React, { FC, InputHTMLAttributes, useState } from 'react'
 // ==== Imgs ====
-import eye from '../../assets/icons/eye.svg'
-import crossedOutEye from '../../assets/icons/crossedOutEye.svg'
 import lock from '../../assets/icons/lock.svg'
 // ==== Styles ====
 import cl from './PasswordField.module.scss'
 import cn from 'classnames'
+// ==== Components ====
 import ButtonEye from '../UI/ButtonEye'
 
 interface IPasswordField extends InputHTMLAttributes<HTMLInputElement> {
@@ -39,10 +38,12 @@ const PasswordField: FC<IPasswordField> = ({
 					{...registerInForm}
 					{...props}
 				/>
+				
 				<ButtonEye
 					isShow={isShowPassword}
 					handleShow={togglePasswordVisibility}
 				/>
+
 			</div>
 		</label>
 	)
