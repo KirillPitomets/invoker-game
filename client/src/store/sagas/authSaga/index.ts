@@ -1,4 +1,4 @@
-import { IUser } from './../../../models/IUser'
+import { setIsServerWorking } from './../../action-creators/error'
 import { call, put, takeEvery } from 'redux-saga/effects'
 // ==== Axios ====
 import axios, { AxiosError, AxiosResponse } from 'axios'
@@ -7,6 +7,8 @@ import {
 	setUserData,
 	setAuthStatus,
 	setStatusLoading,
+	logout,
+	removeUserData,
 } from '../../action-creators/auth'
 import {
 	setLoginErrorMessages,
@@ -45,15 +47,15 @@ function* loginWorker({
 				avatar: response.data.user.avatar,
 			})
 		)
+		// Change server to working
+		yield put(setIsServerWorking({ isWorking: true }))
 
 		yield put(setAuthStatus({ isAuth: true }))
 	} catch (err: any | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER IS NOT WORKING
-				yield put(
-					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
-				)
+				yield put(setIsServerWorking({ isWorking: false }))
 			} else {
 				const errors = (err as AxiosError<IDataServerError>).response?.data
 				if (errors?.errors) {
@@ -99,13 +101,14 @@ function* registrationWorker({
 		localStorage.setItem('token', response.data.accessToken)
 		yield put(setAuthStatus({ isAuth: true }))
 		yield put(setUserData(response.data.user))
+
+		// Change server to working
+		yield put(setIsServerWorking({ isWorking: true }))
 	} catch (err: unknown | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER ISN'T WORKING
-				yield put(
-					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
-				)
+				yield put(setIsServerWorking({ isWorking: false }))
 			} else {
 				const errors: IDataServerError | undefined = (
 					err as AxiosError<IDataServerError>
@@ -142,13 +145,14 @@ function* checkAuthWorker() {
 		localStorage.setItem('token', response.data.accessToken)
 		yield put(setUserData(response.data.user))
 		yield put(setAuthStatus({ isAuth: true }))
+
+		// Change server to working
+		yield put(setIsServerWorking({ isWorking: true }))
 	} catch (err: unknown | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
 			if (err.code === 'ERR_NETWORK') {
 				// NETWORK ERROR // SERVER ISN'T WORKING
-				yield put(
-					setRefreshAuthErrorMessage({ message: 'The server is down. Try later' })
-				)
+				yield put(setIsServerWorking({ isWorking: false }))
 			} else {
 				const errors: IDataServerError | undefined = (
 					err as AxiosError<IDataServerError>
@@ -170,9 +174,22 @@ function* checkAuthWorker() {
 	}
 }
 
+function* logoutWorker() {
+	try {
+		yield call(UserService.logout)
+		
+		yield put(removeUserData())
+		yield put(setAuthStatus({isAuth: false}))
+		yield localStorage.removeItem('token')
+
+	} catch (err) {
+
+	}
+}
+
 // Watchers
 
-export function* checkAuth() {
+export function* checkAuthWatcher() {
 	yield takeEvery(authActionTypes.CHECK_AUTH, checkAuthWorker)
 }
 
@@ -182,4 +199,8 @@ export function* loginWatcher() {
 
 export function* registrationWatcher() {
 	yield takeEvery(authActionTypes.REGISTRATION, registrationWorker)
+}
+
+export function* logoutWatcher() {
+	yield takeEvery(authActionTypes.LOGOUT, logoutWorker)
 }
