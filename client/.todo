@@ -1,9 +1,9 @@
-[] - will complete errors handlers
 [] - add cool hover animations for component Button and other may :)
 [] - make preload images/icons
-[] - make to check is server working 
-[] - make new reducer's element for a refresh token error if server is down
 
-[] - test the component "ButtonEye" in the "PasswordFiel" (Login/Registration)
-
-[] - Sort files by folders. In "types"
+[Made] - Make a function check to work server  
+[Made] - test the component "ButtonEye" in the "PasswordFiel" (Login/Registration)
+[Made] - Sort files by folders. In "types"
+[Made] - make to check is server working 
+[Made] - make new reducer's element for a refresh token error if server is down
+[Made] - Registration, Login, Logout
