@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 // ==== Redux ====
+import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { logout } from '../../store/action-creators/auth'
+import { hideMainPopUp } from '../../store/action-creators/popup'
 // ==== React router dom  ====
 import { useNavigate } from 'react-router-dom'
 // ==== Types ====
@@ -10,22 +13,28 @@ import cl from './UserProfile.module.scss'
 // ==== Components ====
 import ErrorMessage from '../UI/ErrorMessage'
 import Avatar from '../Avatar'
-import EditableDataField from '../EditableDataField'
+import EditableDataRow from '../EditableDataRow'
 import Button from '../UI/Button'
-import { UserService } from '../../Services/UserService'
 
 const UserProfile = () => {
 	const { isAuth, user } = useTypedSelector(state => state.auth)
-	const { refreshAuthorizationError } = useTypedSelector(state => state.error)
+	const { isServerWorking } = useTypedSelector(state => state.error)
 
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
+	const logoutUser = () => {
+		dispatch(logout())
+		navigate(`/`)
+		dispatch( hideMainPopUp())
+	}
 
 	useEffect(() => {
 		if (!isAuth) navigate(`/${RouteEnum.auth}`)
-	}, [isAuth])
+	}, [])
 
-	if (refreshAuthorizationError)
-		return <ErrorMessage errors={[refreshAuthorizationError]} />
+	if (!isServerWorking)
+		return <ErrorMessage errors={['Server is not working now. Try later']} />
 
 	return (
 		<div className={cl.wrapper}>
@@ -36,14 +45,13 @@ const UserProfile = () => {
 			/>
 
 			<div className={cl.inner}>
-				<EditableDataField
+				<EditableDataRow
 					title='Username'
 					initialText={user.username}
-					isPasswordInput={false}
 					submit={text => console.log(text)}
 				/>
 
-				<EditableDataField
+				<EditableDataRow
 					title='Password'
 					initialText='This your password :3'
 					isPasswordInput={true}
@@ -51,7 +59,7 @@ const UserProfile = () => {
 				/>
 			</div>
 
-			<Button onClick={() => UserService.logout()}>Logout</Button>
+			<Button onClick={logoutUser}>Logout</Button>
 		</div>
 	)
 }
