@@ -55,6 +55,4 @@ router.put(
 )
 router.put('/avatar', authMiddleware, UserController.changeAvatar)
 
-router.get('/logout', authMiddleware, UserController.logout)
-
 module.exports = router
