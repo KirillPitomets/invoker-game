@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 // ==== React hook form ====
 import { useForm } from 'react-hook-form'
 // ==== Types ====
@@ -12,8 +12,7 @@ import cl from './Avatar.module.scss'
 import cn from 'classnames'
 // ==== Components ====
 import FileUploadBtn from '../UI/FileUploadBtn'
-import { CircularProgressbar } from 'react-circular-progressbar'
-import 'react-circular-progressbar/dist/styles.css'
+
 
 interface IAvatar {
 	photoUrl: string
