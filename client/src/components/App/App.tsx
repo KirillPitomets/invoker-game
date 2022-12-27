@@ -5,7 +5,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import cl from './App.module.scss'
 // ==== Redux ====
 import { useDispatch } from 'react-redux'
-import { checkAuth } from '../../store/action-creators/auth'
+import { checkAuth } from '../../store/action-creators/user'
 // ==== Components ====
 import Container from '../Container'
 import Avatar from '../Avatar'
@@ -16,7 +16,7 @@ import Notification, { animations, stylesNotification } from '../Notification'
 import MainPopUp from '../MainPopUp'
 
 const App = () => {
-	const { user } = useTypedSelector(state => state.auth)
+	const { user } = useTypedSelector(state => state.user)
 	const { customBgUrl } = useTypedSelector(state => state.theme)
 	const { refreshAuthorizationError, isServerWorking } = useTypedSelector(state => state.error)
 	const dispatch = useDispatch()

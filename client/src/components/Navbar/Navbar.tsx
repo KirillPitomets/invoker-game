@@ -18,7 +18,7 @@ const determineAuth = (isAuth: boolean): INavbar[] => {
 
 const Navbar = () => {
 	const dispatch = useDispatch()
-	const { isAuth } = useTypedSelector(state => state.auth)
+	const { isAuth } = useTypedSelector(state => state.user)
 
 	const handlePopup = () => dispatch(showMainPopUp())
 
