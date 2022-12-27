@@ -17,7 +17,7 @@ const Authorization = () => {
 	const { id } = useParams()
 	const navigate = useNavigate()
 
-	const { isLoading, isAuth } = useTypedSelector(state => state.auth)
+	const { isLoading, isAuth } = useTypedSelector(state => state.user)
 
 	useEffect(() => {
 		if (isAuth) navigate(`/${RouteEnum.user}`)
@@ -25,14 +25,22 @@ const Authorization = () => {
 
 	return (
 		<div className={cl.wrapper}>
-			<AuthFormHeader isLoginForm={id === RouteEnumId.login ? true : false} />
-
 			{isLoading ? (
 				<Loading />
 			) : id === RouteEnumId.login ? (
-				<Login />
+				<>
+					<AuthFormHeader
+						isLoginForm={id === RouteEnumId.login ? true : false}
+					/>
+					<Login />
+				</>
 			) : (
-				<Registration />
+				<>
+					<AuthFormHeader
+						isLoginForm={id === RouteEnumId.login ? true : false}
+					/>
+					<Registration />
+				</>
 			)}
 		</div>
 	)
