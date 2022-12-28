@@ -8,7 +8,7 @@ import cn from 'classnames'
 interface ITextField extends React.InputHTMLAttributes<HTMLInputElement> {
 	labelClassName?: string
 	withIcon?: boolean
-	reg?: any
+	registerInForm?: any
 }
 
 const FormField: FC<ITextField> = ({
@@ -16,7 +16,7 @@ const FormField: FC<ITextField> = ({
 	labelClassName,
 	withIcon = true,
 	className,
-	reg,
+	registerInForm,
 	...props
 }) => {
 	return (
@@ -32,7 +32,7 @@ const FormField: FC<ITextField> = ({
 				id={id}
 				type='text'
 				className={cn(cl.input, className)}
-				{...reg}
+				{...registerInForm}
 				{...props}
 			/>
 		</label>
