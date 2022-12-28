@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 // ==== Redux ====
 import { useDispatch } from 'react-redux'
 // ==== action creators ====
-import { login } from '../../store/action-creators/auth'
+import { login } from '../../store/action-creators/user'
 // ==== yup / Schemes ====
 import loginSchema from '../../schemes/login'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -15,7 +15,8 @@ import { useDebounce } from '../../hooks/useDebounce'
 import { SubmitHandler, useForm } from 'react-hook-form'
 // ==== Types ====
 import { RouteEnum } from '../../types/route'
-import { InputsName, loginFormData } from '../../types/form/loginFormData'
+import { InputsName } from '../../types/form/loginFormData'
+import { ILogin } from '../../types/services/UserService'
 // ==== Styles ====
 import cl from './Login.module.scss'
 import cn from 'classnames'
@@ -30,22 +31,22 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<loginFormData>({
+	} = useForm<ILogin>({
 		resolver: yupResolver(loginSchema),
 	})
 
 	const dispatch = useDispatch()
-	const { isAuth } = useTypedSelector(state => state.auth)
+	const { isAuth } = useTypedSelector(state => state.user)
 
 	const { isServerWorking, loginError} = useTypedSelector( state => state.error)
 
-	const formSubmit: SubmitHandler<loginFormData> = data => {
+	const formSubmit: SubmitHandler<ILogin> = data => {
 		dispatch(login(data))
 	}
 
 	const navigate = useNavigate()
 
-	const { debounceCallBack } = useDebounce<any, any>(formSubmit, 500)
+	const [ loginDebounce ] = useDebounce<ILogin, void>(formSubmit, 500)
 
 	useEffect(() => {
 		if (isAuth) {
@@ -54,12 +55,14 @@ const Login = () => {
 	}, [isAuth])
 
 	return (
-		<form className={cl.form} onSubmit={handleSubmit(debounceCallBack)}>
+		<form className={cl.form} onSubmit={handleSubmit(loginDebounce)}>
 			<TextField
-				reg={register(InputsName.username, { required: true })}
+				name='username'
+				registerInForm={register(InputsName.username, { required: true })}
 				placeholder='Nickname'
 			/>
 			<PasswordField
+				name='password'
 				placeholder='Password'
 				registerInForm={register(InputsName.password, {
 					required: true,
