@@ -10,15 +10,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useDebounce } from '../../hooks/useDebounce'
-import { useInput } from '../../hooks/useInput'
 // ==== ActionCreators ====
-import { registration } from '../../store/action-creators/auth'
+import { registration } from '../../store/action-creators/user'
 // ==== Types ====
-import {
-	InputsName,
-} from '../../types/form/regInputsName'
+import { InputsName } from '../../types/form/regInputsName'
 import { RouteEnum } from '../../types/route'
-import { IRegistration } from '../../Services/types/UserService'
+import { IRegistration } from '../../types/services/UserService'
 // ==== Styles ====
 import cl from './Registration.module.scss'
 // ==== components ====
@@ -39,17 +36,20 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const { isAuth } = useTypedSelector(
-		state => state.auth
-	)
+	const { isAuth } = useTypedSelector(state => state.user)
 
-	const { registrationError, isServerWorking } = useTypedSelector( state => state.error)
+	const { registrationError, isServerWorking } = useTypedSelector(
+		state => state.error
+	)
 
 	const formSubmit: SubmitHandler<IRegistration> = data => {
 		dispatch(registration(data))
 	}
 
-	const { debounceCallBack } = useDebounce(formSubmit, 500)
+	const [registrationDebounce] = useDebounce<IRegistration, void>(
+		formSubmit,
+		500
+	)
 
 	useEffect(() => {
 		if (isAuth) {
@@ -58,19 +58,22 @@ const Registration = () => {
 	}, [isAuth])
 
 	return (
-		<form className={cl.form} onSubmit={handleSubmit(debounceCallBack)}>
+		<form className={cl.form} onSubmit={handleSubmit(registrationDebounce)}>
 			<TextField
-				reg={register(InputsName.username, { required: true })}
+				name='reg-username'
+				registerInForm={register(InputsName.username, { required: true })}
 				placeholder='Nickname'
 			/>
 
 			<PasswordField
+				name='reg-password'
 				labelClassName={cl.label}
 				registerInForm={register(InputsName.password, { required: true })}
 				placeholder='Password'
 			/>
 
 			<PasswordField
+				name='reg-password-configrmation'
 				placeholder='Confirm Password'
 				registerInForm={register(InputsName.passwordConfirmation, {
 					required: true,
@@ -87,7 +90,7 @@ const Registration = () => {
 					...registrationError,
 				]}
 			/>
-		
+
 			<Button className={cl.submit}>Registration</Button>
 		</form>
 	)
