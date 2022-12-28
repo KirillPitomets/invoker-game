@@ -2,7 +2,9 @@ export enum errorActionTypes {
 	'SET_REGISTRATION_ERROR' = 'SET_REGISTRATION_ERROR',
 	'SET_LOGIN_ERROR' = 'SET_LOGIN_ERROR',
 	'SET_REFRESH_AUTH_ERROR' = 'SET_REFRESH_AUTH_ERROR',
-	'SET_IS_SERVER_WORKING' = 'SET_IS_SERVER_WORKING'
+	'SET_IS_SERVER_WORKING' = 'SET_IS_SERVER_WORKING',
+	'SET_USERNAME_CHANGE_ERROR' = 'SET_USERNAME_CHANGE_ERROR',
+	'SET_PASSWORD_CHANGE_ERROR' = 'SET_PASSWORD_CHANGE_ERROR',
 }
 
 export interface IState {
@@ -10,6 +12,8 @@ export interface IState {
 	loginError: string[]
 	refreshAuthorizationError: string
 	isServerWorking: boolean
+	usernameChangeError: string,
+	userPasswordChangeError: string
 }
 
 export type setLoginErrorPayload = {
@@ -48,9 +52,29 @@ interface ISetIsServerWorking {
 	payload: setIsServerWorkingPayload
 }
 
+export type changeUsernameErrorPayload = {
+	message: string
+}
+
+interface setChangeUsernameError {
+	type: errorActionTypes.SET_USERNAME_CHANGE_ERROR,
+	payload: changeUsernameErrorPayload
+}
+
+export type changePasswordErrorPayload = {
+	message: string
+}
+
+interface setChangePasswordError {
+	type: errorActionTypes.SET_PASSWORD_CHANGE_ERROR,
+	payload: changePasswordErrorPayload
+}
+
 
 export type IAction =
 	| ISetLoginError
 	| ISetRegistrationError
 	| ISetRefreshAuthError
 	| ISetIsServerWorking
+	| setChangeUsernameError
+	| setChangePasswordError
