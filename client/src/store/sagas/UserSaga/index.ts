@@ -1,5 +1,11 @@
-import { setIsServerWorking } from './../../action-creators/error'
+import { setChangePasswordError } from './../../action-creators/error'
+import { updateUsernamePayload } from './../../../types/reducers/userReducer'
+import {
+	setChangeUsernameError,
+	setIsServerWorking,
+} from '../../action-creators/error'
 import { call, put, takeEvery } from 'redux-saga/effects'
+import { store } from '../../index'
 // ==== Axios ====
 import axios, { AxiosError, AxiosResponse } from 'axios'
 // ==== Action creators ====
@@ -9,7 +15,7 @@ import {
 	setStatusLoading,
 	logout,
 	removeUserData,
-} from '../../action-creators/auth'
+} from '../../action-creators/user'
 import {
 	setLoginErrorMessages,
 	setRegErrorMessages,
@@ -17,19 +23,30 @@ import {
 } from '../../action-creators/error'
 // ==== Types ====
 import {
-	authActionTypes,
+	userActionTypes,
 	loginPayload,
-} from '../../../types/reducers/authReducer'
+	updatePasswordPayload,
+} from '../../../types/reducers/userReducer'
 import { IDataServerError } from '../../../types/Sagas/AuthSaga'
 import { IAuthResponse } from '../../../models/response/AuthResponse'
-import { registrationPayload } from '../../../types/reducers/authReducer'
+import { registrationPayload } from '../../../types/reducers/userReducer'
 // ==== Service ====
 import { UserService } from '../../../Services/UserService'
+import { IUser } from '../../../models/IUser'
+
+const errorHandler = (errCode: string = '', cb: () => void) => {
+	if (errCode === 'ERR_NETWORK') {
+		// NETWORK ERROR // SERVER IS NOT WORKING
+		store.dispatch(setIsServerWorking({ isWorking: false }))
+	} else {
+		cb()
+	}
+}
 
 function* loginWorker({
 	payload,
 }: {
-	type: authActionTypes
+	type: userActionTypes
 	payload: loginPayload
 }) {
 	try {
@@ -53,10 +70,7 @@ function* loginWorker({
 		yield put(setAuthStatus({ isAuth: true }))
 	} catch (err: any | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
-			if (err.code === 'ERR_NETWORK') {
-				// NETWORK ERROR // SERVER IS NOT WORKING
-				yield put(setIsServerWorking({ isWorking: false }))
-			} else {
+			errorHandler(err.code, () => {
 				const errors = (err as AxiosError<IDataServerError>).response?.data
 				if (errors?.errors) {
 					const arrayOfErrors: string[] = [errors.message]
@@ -65,9 +79,9 @@ function* loginWorker({
 						arrayOfErrors.push(errors?.errors[indx].msg)
 					}
 
-					yield put(setLoginErrorMessages({ messages: arrayOfErrors }))
+					store.dispatch(setLoginErrorMessages({ messages: arrayOfErrors }))
 				}
-			}
+			})
 		} else {
 			yield put(
 				setLoginErrorMessages({
@@ -83,7 +97,7 @@ function* loginWorker({
 function* registrationWorker({
 	payload,
 }: {
-	type: authActionTypes
+	type: userActionTypes
 	payload: registrationPayload
 }) {
 	try {
@@ -106,13 +120,12 @@ function* registrationWorker({
 		yield put(setIsServerWorking({ isWorking: true }))
 	} catch (err: unknown | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
-			if (err.code === 'ERR_NETWORK') {
-				// NETWORK ERROR // SERVER ISN'T WORKING
-				yield put(setIsServerWorking({ isWorking: false }))
-			} else {
+			errorHandler(err.code, () => {
 				const errors: IDataServerError | undefined = (
 					err as AxiosError<IDataServerError>
 				).response?.data
+
+				console.log(errors)
 
 				if (errors?.errors) {
 					const arrayOfErrors: string[] = [errors.message]
@@ -120,10 +133,9 @@ function* registrationWorker({
 					for (let indx = 0; indx < errors?.errors.length; indx++) {
 						arrayOfErrors.push(errors?.errors[indx].msg)
 					}
-
-					yield put(setRegErrorMessages({ messages: arrayOfErrors }))
+					store.dispatch(setRegErrorMessages({ messages: arrayOfErrors }))
 				}
-			}
+			})
 		} else {
 			yield put(
 				setRegErrorMessages({
@@ -150,18 +162,17 @@ function* checkAuthWorker() {
 		yield put(setIsServerWorking({ isWorking: true }))
 	} catch (err: unknown | AxiosError<IDataServerError>) {
 		if (axios.isAxiosError(err)) {
-			if (err.code === 'ERR_NETWORK') {
-				// NETWORK ERROR // SERVER ISN'T WORKING
-				yield put(setIsServerWorking({ isWorking: false }))
-			} else {
+			errorHandler(err.code, () => {
 				const errors: IDataServerError | undefined = (
 					err as AxiosError<IDataServerError>
 				).response?.data!
 
 				if (errors.message) {
-					yield put(setRefreshAuthErrorMessage({ message: errors.message }))
+					store.dispatch(
+						setRefreshAuthErrorMessage({ message: errors.message })
+					)
 				}
-			}
+			})
 		} else {
 			yield put(
 				setRefreshAuthErrorMessage({
@@ -177,30 +188,120 @@ function* checkAuthWorker() {
 function* logoutWorker() {
 	try {
 		yield call(UserService.logout)
-		
+
 		yield put(removeUserData())
-		yield put(setAuthStatus({isAuth: false}))
+		yield put(setAuthStatus({ isAuth: false }))
 		yield localStorage.removeItem('token')
-
 	} catch (err) {
+		yield put(
+			setRefreshAuthErrorMessage({
+				message: "I'm Sorry :) An unexpected error has occurred",
+			})
+		)
+	}
+}
 
+function* changePasswordWorker({
+	payload,
+}: {
+	type: userActionTypes.UPDATE_PASSWORD
+	payload: updatePasswordPayload
+}) {
+	try {
+		yield put(setStatusLoading({ isLoading: true }))
+
+		const { password, passwordConfirmation } = payload
+		yield call(UserService.changePassword, {
+			password: password,
+			passwordConfirmation,
+		})
+		yield put(setChangePasswordError({ message: '' }))
+	} catch (err: unknown | AxiosError<IDataServerError>) {
+		if (axios.isAxiosError(err)) {
+			errorHandler(err.code, () => {
+				const errors: IDataServerError | undefined = (
+					err as AxiosError<IDataServerError>
+				).response?.data!
+
+				if (errors.message) {
+					store.dispatch(setChangePasswordError({ message: errors.message }))
+				}
+			})
+		} else {
+			yield put(
+				setChangePasswordError({
+					message: "I'm Sorry :) An unexpected error has occurred",
+				})
+			)
+		}
+	} finally {
+		yield put(setStatusLoading({ isLoading: false }))
+	}
+}
+
+function* changeUsernameWorker({
+	payload,
+}: {
+	type: userActionTypes.UPDATE_USERNAME
+	payload: updateUsernamePayload
+}) {
+	try {
+		yield put(setStatusLoading({ isLoading: true }))
+
+		const { username } = payload
+		const { data }: AxiosResponse<IUser> = yield call(
+			UserService.changeUsername,
+			{ username }
+		)
+
+		yield put(setUserData({ username: data?.username, avatar: data?.avatar }))
+
+		yield put(setChangeUsernameError({ message: '' }))
+	} catch (err: unknown | AxiosError<IDataServerError>) {
+		if (axios.isAxiosError(err)) {
+			errorHandler(err.code, () => {
+				const errors: IDataServerError | undefined = (
+					err as AxiosError<IDataServerError>
+				).response?.data!
+
+				if (errors.message) {
+					store.dispatch(setChangeUsernameError({ message: errors.message }))
+				}
+			})
+		} else {
+			yield put(
+				setChangeUsernameError({
+					message: "I'm Sorry :) An unexpected error has occurred",
+				})
+			)
+		}
+	} finally {
+		yield put(setStatusLoading({ isLoading: false }))
 	}
 }
 
 // Watchers
 
 export function* checkAuthWatcher() {
-	yield takeEvery(authActionTypes.CHECK_AUTH, checkAuthWorker)
+	yield takeEvery(userActionTypes.CHECK_AUTH, checkAuthWorker)
 }
 
 export function* loginWatcher() {
-	yield takeEvery(authActionTypes.LOGIN, loginWorker)
+	yield takeEvery(userActionTypes.LOGIN, loginWorker)
 }
 
 export function* registrationWatcher() {
-	yield takeEvery(authActionTypes.REGISTRATION, registrationWorker)
+	yield takeEvery(userActionTypes.REGISTRATION, registrationWorker)
 }
 
 export function* logoutWatcher() {
-	yield takeEvery(authActionTypes.LOGOUT, logoutWorker)
+	yield takeEvery(userActionTypes.LOGOUT, logoutWorker)
+}
+
+export function* changePasswordWatcher() {
+	yield takeEvery(userActionTypes.UPDATE_PASSWORD, changePasswordWorker)
+}
+
+export function* changeUsernameWatcher() {
+	yield takeEvery(userActionTypes.UPDATE_USERNAME, changeUsernameWorker)
 }
