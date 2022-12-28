@@ -1,9 +1,9 @@
-import React, { FC, HTMLAttributes, ReactNode } from 'react'
+import React, { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 // ==== Styles ====
 import cl from './Button.module.scss'
 import cn from 'classnames'
 
-interface IButton extends HTMLAttributes<HTMLButtonElement> {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode
 	outline?: boolean
 	disabled?: boolean
