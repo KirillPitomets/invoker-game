@@ -7,7 +7,7 @@ import { popUpReducer } from "./popUpReducer";
 import { recordReducer } from "./recordReducer";
 import { themeReducer } from "./themeReducer"
 import { hotkeyReducer } from './hotkeysReducer';
-import { authReducer } from './authReducer'
+import { userReducer } from './userReducer'
 
 
 export const rootReducer = combineReducers({
@@ -17,7 +17,7 @@ export const rootReducer = combineReducers({
 	records: recordReducer,
 	theme: themeReducer,
 	hotkeys: hotkeyReducer,
-	auth: authReducer,
+	user: userReducer,
 	error: errorReducer
 })
 
