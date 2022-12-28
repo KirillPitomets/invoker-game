@@ -1,12 +1,13 @@
 import { IUser } from "../../models/IUser"
 
-export enum authActionTypes {
+export enum userActionTypes {
 	'LOGIN' = 'LOGIN',
 	'REGISTRATION' = 'REGISTRATION',
 	'LOGOUT' = 'LOGOUT',
 	'REMOVE_USER_DATA' = 'REMOVE_USER_DATA',
 	'CHECK_AUTH' = 'CHECK_AUTH',
-	'UPDATE' = 'UPDATE',
+	'UPDATE_USERNAME' = 'UPDATE_USERNAME',
+	'UPDATE_PASSWORD' = 'UPDATE_PASSWORD',
 	'SET_USER_DATA' = 'SET_USER_DATA',
 	'SET_STATUS_LOADING' = 'SET_STATUS_LOADING',
 	'SET_ERROR_LOGIN_MESSAGE' = 'SET_ERROR_LOGIN_MESSAGE',
@@ -28,7 +29,7 @@ export type registrationPayload = {
 }
 
 interface IRegistration {
-	type: authActionTypes.REGISTRATION
+	type: userActionTypes.REGISTRATION
 	payload: registrationPayload
 }
 
@@ -38,12 +39,27 @@ export type loginPayload = {
 }
 
 interface ILogin {
-	type: authActionTypes.LOGIN
+	type: userActionTypes.LOGIN
 	payload: loginPayload
 }
 
-interface IUpdate {
-	type: authActionTypes.UPDATE
+export type updateUsernamePayload = {
+	username: string
+}
+
+interface IUpdateUsername {
+	type: userActionTypes.UPDATE_USERNAME
+	payload: updateUsernamePayload
+}
+
+export type updatePasswordPayload = {
+	password: string
+	passwordConfirmation: string
+}
+
+interface IUpdatePassword {
+	type: userActionTypes.UPDATE_PASSWORD
+	payload: updatePasswordPayload
 }
 
 export type setStatusLoadingPayload = {
@@ -51,7 +67,7 @@ export type setStatusLoadingPayload = {
 }
 
 interface ISetStatusLoading {
-	type: authActionTypes.SET_STATUS_LOADING
+	type: userActionTypes.SET_STATUS_LOADING
 	payload: setStatusLoadingPayload
 }
 
@@ -60,12 +76,12 @@ export type setAuthStatusPayload = {
 }
 
 interface ISetAuthStatus {
-	type: authActionTypes.SET_AUTH_STATUS
+	type: userActionTypes.SET_AUTH_STATUS
 	payload: setAuthStatusPayload
 }
 
 interface ICheckAuth {
-	type: authActionTypes.CHECK_AUTH
+	type: userActionTypes.CHECK_AUTH
 }
 
 export type setUserDataPayload = {
@@ -74,22 +90,23 @@ export type setUserDataPayload = {
 }
 
 interface ISetUserData {
-	type: authActionTypes.SET_USER_DATA
+	type: userActionTypes.SET_USER_DATA
 	payload: IUser
 }
 
 interface ILogout {
-	type: authActionTypes.LOGOUT
+	type: userActionTypes.LOGOUT
 }
 
 interface IRemoveUserData {
-	type: authActionTypes.REMOVE_USER_DATA
+	type: userActionTypes.REMOVE_USER_DATA
 }
 
 export type IAction =
 	| ILogin
 	| IRegistration
-	| IUpdate
+	| IUpdateUsername
+	| IUpdatePassword
 	| ISetStatusLoading
 	| ISetAuthStatus
 	| ICheckAuth
