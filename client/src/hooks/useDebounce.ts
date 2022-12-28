@@ -15,5 +15,5 @@ export const useDebounce = <A extends unknown, R extends unknown>(cb: (args: A) 
 
 	}, [delay, cb])
 
-	return { debounceCallBack }
+	return [debounceCallBack]
 }
