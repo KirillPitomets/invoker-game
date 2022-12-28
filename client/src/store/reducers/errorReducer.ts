@@ -9,6 +9,8 @@ const initialState: IState = {
 	loginError: [],
 	refreshAuthorizationError: '',
 	isServerWorking: true,
+	usernameChangeError: '',
+	userPasswordChangeError: ''
 }
 
 export const errorReducer = (state = initialState, action: IAction): IState => {
@@ -21,7 +23,12 @@ export const errorReducer = (state = initialState, action: IAction): IState => {
 			return { ...state, refreshAuthorizationError: action.payload.message }
 		case errorActionTypes.SET_IS_SERVER_WORKING:
 			return { ...state, isServerWorking: action.payload.isWorking}
+		case errorActionTypes.SET_USERNAME_CHANGE_ERROR:
+			return { ...state, usernameChangeError: action.payload.message}
+		case errorActionTypes.SET_PASSWORD_CHANGE_ERROR:
+			return { ...state, userPasswordChangeError: action.payload.message}
 		default:
 			return state
 	}
 }
+
