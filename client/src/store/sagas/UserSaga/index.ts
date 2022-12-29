@@ -1,5 +1,4 @@
-import { setChangePasswordError } from './../../action-creators/error'
-import { updateUsernamePayload } from './../../../types/reducers/userReducer'
+import { setUploadAvatarError } from './../../action-creators/error'
 import {
 	setChangeUsernameError,
 	setIsServerWorking,
@@ -20,18 +19,22 @@ import {
 	setLoginErrorMessages,
 	setRegErrorMessages,
 	setRefreshAuthErrorMessage,
+	setChangePasswordError,
 } from '../../action-creators/error'
 // ==== Types ====
 import {
 	userActionTypes,
-	loginPayload,
-	updatePasswordPayload,
+	IUpdatePassword,
+	IUpdateUsername,
+	IUploadAvatar,
+	IRegistration,
+	ILogin,
 } from '../../../types/reducers/userReducer'
 import { IDataServerError } from '../../../types/Sagas/AuthSaga'
 import { IAuthResponse } from '../../../models/response/AuthResponse'
-import { registrationPayload } from '../../../types/reducers/userReducer'
 // ==== Service ====
 import { UserService } from '../../../Services/UserService'
+// ==== Models ====
 import { IUser } from '../../../models/IUser'
 
 const errorHandler = (errCode: string = '', cb: () => void) => {
@@ -43,12 +46,7 @@ const errorHandler = (errCode: string = '', cb: () => void) => {
 	}
 }
 
-function* loginWorker({
-	payload,
-}: {
-	type: userActionTypes
-	payload: loginPayload
-}) {
+function* loginWorker({ payload }: ILogin) {
 	try {
 		const { username, password } = payload
 		yield put(setStatusLoading({ isLoading: true }))
@@ -94,12 +92,7 @@ function* loginWorker({
 	}
 }
 
-function* registrationWorker({
-	payload,
-}: {
-	type: userActionTypes
-	payload: registrationPayload
-}) {
+function* registrationWorker({ payload }: IRegistration) {
 	try {
 		yield put(setStatusLoading({ isLoading: true }))
 
@@ -201,12 +194,7 @@ function* logoutWorker() {
 	}
 }
 
-function* changePasswordWorker({
-	payload,
-}: {
-	type: userActionTypes.UPDATE_PASSWORD
-	payload: updatePasswordPayload
-}) {
+function* changePasswordWorker({ payload }: IUpdatePassword) {
 	try {
 		yield put(setStatusLoading({ isLoading: true }))
 
@@ -239,12 +227,7 @@ function* changePasswordWorker({
 	}
 }
 
-function* changeUsernameWorker({
-	payload,
-}: {
-	type: userActionTypes.UPDATE_USERNAME
-	payload: updateUsernamePayload
-}) {
+function* changeUsernameWorker({ payload }: IUpdateUsername) {
 	try {
 		yield put(setStatusLoading({ isLoading: true }))
 
@@ -280,6 +263,38 @@ function* changeUsernameWorker({
 	}
 }
 
+function* uploadAvatar({ payload }: IUploadAvatar) {
+	try {
+		const { avatar } = payload
+
+		const userData: IUser = yield call(UserService.uploadAvatar, { avatar })
+
+		yield put(
+			setUserData({ username: userData?.username, avatar: userData?.avatar })
+		)
+
+		yield put(setUploadAvatarError({ message: '' })) // Remove an error message
+	} catch (err) {
+		if (axios.isAxiosError(err)) {
+			errorHandler(err.code, () => {
+				const errors: IDataServerError | undefined = (
+					err as AxiosError<IDataServerError>
+				).response?.data!
+
+				if (errors.message) {
+					store.dispatch(setUploadAvatarError({ message: errors.message }))
+				}
+			})
+		} else {
+			yield put(
+				setUploadAvatarError({
+					message: "I'm Sorry :) An unexpected error has occurred",
+				})
+			)
+		}
+	}
+}
+
 // Watchers
 
 export function* checkAuthWatcher() {
@@ -304,4 +319,8 @@ export function* changePasswordWatcher() {
 
 export function* changeUsernameWatcher() {
 	yield takeEvery(userActionTypes.UPDATE_USERNAME, changeUsernameWorker)
+}
+
+export function* uploadAvatarWatcher() {
+	yield takeEvery(userActionTypes.UPLOAD_AVATAR, uploadAvatar)
 }
