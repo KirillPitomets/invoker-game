@@ -29,7 +29,9 @@ import ChangeUserPasswordForm from '../ChangeUserPasswordForm'
 
 const UserProfile = () => {
 	const { isAuth, user } = useTypedSelector(state => state.user)
-	const { isServerWorking } = useTypedSelector(state => state.error)
+	const { isServerWorking } = useTypedSelector(
+		state => state.error
+	)
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -45,7 +47,7 @@ const UserProfile = () => {
 	const onSubmitUsername: SubmitHandler<IChangeUsername> = data => {
 		dispatch(changeUsername(data))
 	}
-	
+
 	// ==== Change password ====
 	// =========================
 	const onSubmitPassword: SubmitHandler<IChangeUserPassword> = data => {
@@ -62,11 +64,13 @@ const UserProfile = () => {
 	return (
 		<div className={cl.container}>
 			<div className={cl.wrapper}>
-				<Avatar
-					photoUrl={user.avatar}
-					name={user.username}
-					canChangeAvatar={true}
-				/>
+				<div className={cl['avatar-wrapper']}>
+					<Avatar
+						photoUrl={user.avatar}
+						name='Your avatar :)'
+						canChangeAvatar={true}
+					/>
+				</div>
 
 				<div className={cl.inner}>
 					{/* Change username */}
