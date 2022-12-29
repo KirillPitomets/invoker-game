@@ -2,7 +2,7 @@ import {
 	IState,
 	IAction,
 	errorActionTypes,
-} from '../../types/reducers/errorRedcuer'
+} from '../../types/reducers/errorReducer'
 
 const initialState: IState = {
 	registrationError: [],

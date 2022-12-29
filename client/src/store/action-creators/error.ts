@@ -8,7 +8,7 @@ import {
 	changePasswordErrorPayload,
 	changeUsernameErrorPayload,
 	setUploadAvatarErrorPayload,	
-} from '../../types/reducers/errorRedcuer'
+} from '../../types/reducers/errorReducer'
 
 export const setRegErrorMessages = (
 	payload: setRegistrationErrorPayload
