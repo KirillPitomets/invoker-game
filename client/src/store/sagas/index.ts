@@ -7,6 +7,7 @@ import {
 	logoutWatcher,
 	changePasswordWatcher,
 	changeUsernameWatcher,
+	uploadAvatarWatcher
 } from './UserSaga'
 
 export default function* rootSaga() {
@@ -17,6 +18,7 @@ export default function* rootSaga() {
 		logoutWatcher(),
 		changePasswordWatcher(),
 		changeUsernameWatcher(),
+		uploadAvatarWatcher()
 	]
 
 	yield all(sagas)
