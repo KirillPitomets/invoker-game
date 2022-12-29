@@ -12,7 +12,6 @@ import {
 	setUserData,
 	setAuthStatus,
 	setStatusLoading,
-	logout,
 	removeUserData,
 } from '../../action-creators/user'
 import {
