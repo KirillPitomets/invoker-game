@@ -10,7 +10,8 @@ const initialState: IState = {
 	refreshAuthorizationError: '',
 	isServerWorking: true,
 	usernameChangeError: '',
-	userPasswordChangeError: ''
+	userPasswordChangeError: '',
+	uploadAvatarError: ''
 }
 
 export const errorReducer = (state = initialState, action: IAction): IState => {
@@ -27,6 +28,8 @@ export const errorReducer = (state = initialState, action: IAction): IState => {
 			return { ...state, usernameChangeError: action.payload.message}
 		case errorActionTypes.SET_PASSWORD_CHANGE_ERROR:
 			return { ...state, userPasswordChangeError: action.payload.message}
+		case errorActionTypes.SET_UPLOAD_AVATAR_ERROR:
+			return {...state, uploadAvatarError: action.payload.message}
 		default:
 			return state
 	}
