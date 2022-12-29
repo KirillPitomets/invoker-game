@@ -7,7 +7,8 @@ import {
 	setAuthStatusPayload,
 	registrationPayload,
 	updatePasswordPayload,
-	updateUsernamePayload
+	updateUsernamePayload,
+	uploadAvatarPayload
 } from '../../types/reducers/userReducer'
 
 export const setStatusLoading = (payload: setStatusLoadingPayload): IAction => {
@@ -48,4 +49,8 @@ export const changePassword = (payload: updatePasswordPayload): IAction => {
 
 export const changeUsername = (payload: updateUsernamePayload): IAction => {
 	return {type: userActionTypes.UPDATE_USERNAME, payload}
+}
+
+export const uploadAvatar = (payload: uploadAvatarPayload): IAction => {
+	return {type: userActionTypes.UPLOAD_AVATAR, payload}
 }
