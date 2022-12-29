@@ -58,7 +58,7 @@ const App = () => {
 				) : null}
 
 				<div className={cl.avatar}>
-					<Avatar name={user.username} photoUrl={user.avatar} />
+					<Avatar name='Your avatar :)' photoUrl={user.avatar} />
 					<UserNickName
 						name={user.username || 'Login / Register'}
 						className={cl['user-name_marg']}
