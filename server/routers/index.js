@@ -50,6 +50,13 @@ router.put(
 	body('password')
 		.isLength({ min: 8, max: 16 })
 		.withMessage('Password cannot be less than 8 characters and more than 16'),
+	body('passwordConfirmation').custom((value, { req }) => {
+		if (value !== req.body.password) {
+			throw new Error('Password confirmation does not match password')
+		}
+
+		return true
+	}),
 	authMiddleware,
 	UserController.changePassword
 )
