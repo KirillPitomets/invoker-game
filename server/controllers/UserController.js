@@ -132,12 +132,12 @@ class AuthController {
 			const file = req.files.avatar
 
 			if (file.size / 1024 > 400) {
-				return next(ApiError.BadRequest('Your picture is so big :)', []))
+				return next(ApiError.BadRequest('Your picture is so big :) Picture size should not exceed 2mb', []))
 			}
 
-			await UserService.changeAvatar({ userId: req.user.id, avatar: file })
+			const userData = await UserService.changeAvatar({ userId: req.user.id, avatar: file })
 
-			return res.json({ message: 'so good' })
+			return res.json({ user: userData })
 		} catch (err) {
 			console.log(err)
 			next(err)
