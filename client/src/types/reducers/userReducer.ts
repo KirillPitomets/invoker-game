@@ -1,4 +1,4 @@
-import { IUser } from "../../models/IUser"
+import { IUser } from '../../models/IUser'
 
 export enum userActionTypes {
 	'LOGIN' = 'LOGIN',
@@ -10,10 +10,8 @@ export enum userActionTypes {
 	'UPDATE_PASSWORD' = 'UPDATE_PASSWORD',
 	'SET_USER_DATA' = 'SET_USER_DATA',
 	'SET_STATUS_LOADING' = 'SET_STATUS_LOADING',
-	'SET_ERROR_LOGIN_MESSAGE' = 'SET_ERROR_LOGIN_MESSAGE',
-	'SET_ERROR_REG_MESSAGE' = 'SET_ERROR_REG_MESSAGE',
 	'SET_AUTH_STATUS' = 'SET_AUTH_STATUS',
-	'SET_USER_AUTH_ERROR_MESSAGE' = 'SET_USER_AUTH_ERROR_MESSAGE'
+	'UPLOAD_AVATAR' = 'UPLOAD_AVATAR',
 }
 
 export interface IState {
@@ -28,7 +26,7 @@ export type registrationPayload = {
 	passwordConfirmation: string
 }
 
-interface IRegistration {
+export interface IRegistration {
 	type: userActionTypes.REGISTRATION
 	payload: registrationPayload
 }
@@ -38,7 +36,7 @@ export type loginPayload = {
 	password: string
 }
 
-interface ILogin {
+export interface ILogin {
 	type: userActionTypes.LOGIN
 	payload: loginPayload
 }
@@ -47,7 +45,7 @@ export type updateUsernamePayload = {
 	username: string
 }
 
-interface IUpdateUsername {
+export interface IUpdateUsername {
 	type: userActionTypes.UPDATE_USERNAME
 	payload: updateUsernamePayload
 }
@@ -57,7 +55,7 @@ export type updatePasswordPayload = {
 	passwordConfirmation: string
 }
 
-interface IUpdatePassword {
+export interface IUpdatePassword {
 	type: userActionTypes.UPDATE_PASSWORD
 	payload: updatePasswordPayload
 }
@@ -66,7 +64,7 @@ export type setStatusLoadingPayload = {
 	isLoading: boolean
 }
 
-interface ISetStatusLoading {
+export interface ISetStatusLoading {
 	type: userActionTypes.SET_STATUS_LOADING
 	payload: setStatusLoadingPayload
 }
@@ -75,31 +73,40 @@ export type setAuthStatusPayload = {
 	isAuth: boolean
 }
 
-interface ISetAuthStatus {
+export interface ISetAuthStatus {
 	type: userActionTypes.SET_AUTH_STATUS
 	payload: setAuthStatusPayload
 }
 
-interface ICheckAuth {
+export interface ICheckAuth {
 	type: userActionTypes.CHECK_AUTH
 }
 
 export type setUserDataPayload = {
-	username: string,
+	username: string
 	avatar: string
 }
 
-interface ISetUserData {
+export interface ISetUserData {
 	type: userActionTypes.SET_USER_DATA
 	payload: IUser
 }
 
-interface ILogout {
+export interface ILogout {
 	type: userActionTypes.LOGOUT
 }
 
-interface IRemoveUserData {
+export interface IRemoveUserData {
 	type: userActionTypes.REMOVE_USER_DATA
+}
+
+export type uploadAvatarPayload = {
+	avatar: File
+}
+
+export interface IUploadAvatar {
+	type: userActionTypes.UPLOAD_AVATAR
+	payload: uploadAvatarPayload
 }
 
 export type IAction =
@@ -113,3 +120,4 @@ export type IAction =
 	| ISetUserData
 	| ILogout
 	| IRemoveUserData
+	| IUploadAvatar
