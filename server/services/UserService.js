@@ -96,11 +96,9 @@ class UserService {
 	}
 
 	async changeUsername({ userId, username }) {
+
 		const candidate = await UserModel.findOne({ username })
 
-		if (userId === candidate.id) {
-			throw ApiError.BadRequest(`You are already using this username`)
-		}
 
 		if (candidate) {
 			throw ApiError.BadRequest(`Username "${username}" already someone using`)
@@ -113,7 +111,6 @@ class UserService {
 
 		const user = await UserModel.findById(userId)
 		const userDto = new UserDto(user)
-
 		return { user: userDto }
 	}
 
@@ -125,13 +122,13 @@ class UserService {
 		const hashedPassword = await PasswordService.hashPassword(password)
 
 		await UserModel.updateOne(
-			{ _id: userId }, // find user by id
+			{ _id: userId }, // find by id
 			{ password: hashedPassword } // new data
 		)
 
 		const user = await UserModel.findById(userId)
 		const userDto = new UserDto(user)
-
+		
 		return { user: userDto }
 	}
 
