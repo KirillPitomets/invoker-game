@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/invoker-game/static/css/main.499b0648.css",
+    "main.js": "/invoker-game/static/js/main.5bca302a.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/invoker-game/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/meteor.gif": "/invoker-game/static/media/meteor.7a61643b61376fbf368e.gif",
+    "static/media/face.jpg": "/invoker-game/static/media/face.0177a5bfcd79be201102.jpg",
+    "static/media/avatar.jpg": "/invoker-game/static/media/avatar.602c6b30e7cbcb0ef4b9.jpg",
+    "static/media/Spantaran.ttf": "/invoker-game/static/media/Spantaran.cd8701689816277ba330.ttf",
+    "static/media/Spantaran.woff": "/invoker-game/static/media/Spantaran.941496af54658b9e0906.woff",
+    "static/media/emp.jpg": "/invoker-game/static/media/emp.880f9a2b98ce22b268bc.jpg",
+    "static/media/familiars_of_glorious_Inspiration_forge_spirit.jpg": "/invoker-game/static/media/familiars_of_glorious_Inspiration_forge_spirit.11710667036dc7e2b2eb.jpg",
+    "static/media/ice_wall.jpg": "/invoker-game/static/media/ice_wall.8f6c160a2cf94220c799.jpg",
+    "static/media/cold_snap.jpg": "/invoker-game/static/media/cold_snap.fa41dffeb4310676ef06.jpg",
+    "static/media/ghost_walk.jpg": "/invoker-game/static/media/ghost_walk.fb00e0bbc40f1da2e4a8.jpg",
+    "static/media/meteor.jpg": "/invoker-game/static/media/meteor.da747ee9cd78a3d6eed1.jpg",
+    "static/media/sun_strike.jpg": "/invoker-game/static/media/sun_strike.0f3c54353475b138938d.jpg",
+    "static/media/alacrity.jpg": "/invoker-game/static/media/alacrity.653925fcb5d51366f9e7.jpg",
+    "static/media/tornado.jpg": "/invoker-game/static/media/tornado.b3d4b8dcecdcdd341956.jpg",
+    "static/media/blast.jpg": "/invoker-game/static/media/blast.23488f86f6fa499f163a.jpg",
+    "static/media/exort.jpg": "/invoker-game/static/media/exort.a1eda4a0ea23563adef9.jpg",
+    "static/media/forge_spirit.jpg": "/invoker-game/static/media/forge_spirit.1af42e3e312dd2a6719b.jpg",
+    "static/media/babyInvoker_forge_spirit.jpg": "/invoker-game/static/media/babyInvoker_forge_spirit.a52cbf32c38832f4ac51.jpg",
+    "static/media/settings.svg": "/invoker-game/static/media/settings.14e751a1053c180423d513e5b1f72566.svg",
+    "static/media/crown.svg": "/invoker-game/static/media/crown.193a387f33731f4e7cedba4cfb9965eb.svg",
+    "static/media/user.svg": "/invoker-game/static/media/user.f6377fadb3ef4017b995a8cfd0ba5271.svg",
+    "static/media/crossedOutEye.svg": "/invoker-game/static/media/crossedOutEye.0ab7cdc35f2a7fdde2ee11ad6b8202ce.svg",
+    "static/media/lock.svg": "/invoker-game/static/media/lock.ff4cf1ef470d1bd881984ac8ca3aa137.svg",
+    "static/media/reset-arrow.svg": "/invoker-game/static/media/reset-arrow.8d424e6acfa4ec4afa3a4763959484a3.svg",
+    "static/media/information.svg": "/invoker-game/static/media/information.c02281d14b015279800e220f751f517d.svg",
+    "static/media/eye.svg": "/invoker-game/static/media/eye.25b424bb076c360769a7e7b8207a6241.svg",
+    "index.html": "/invoker-game/index.html",
+    "main.499b0648.css.map": "/invoker-game/static/css/main.499b0648.css.map",
+    "main.5bca302a.js.map": "/invoker-game/static/js/main.5bca302a.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/invoker-game/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.499b0648.css",
+    "static/js/main.5bca302a.js"
+  ]
+}
