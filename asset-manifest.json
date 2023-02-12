@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/invoker-game/static/css/main.499b0648.css",
-    "main.js": "/invoker-game/static/js/main.c99fb6fb.js",
+    "main.css": "/invoker-game/static/css/main.1adea1f6.css",
+    "main.js": "/invoker-game/static/js/main.3202d071.js",
     "static/js/787.c4e7f8f9.chunk.js": "/invoker-game/static/js/787.c4e7f8f9.chunk.js",
     "static/media/meteor.gif": "/invoker-game/static/media/meteor.7a61643b61376fbf368e.gif",
     "static/media/face.jpg": "/invoker-game/static/media/face.0177a5bfcd79be201102.jpg",
@@ -30,12 +30,12 @@
     "static/media/information.svg": "/invoker-game/static/media/information.c02281d14b015279800e220f751f517d.svg",
     "static/media/eye.svg": "/invoker-game/static/media/eye.25b424bb076c360769a7e7b8207a6241.svg",
     "index.html": "/invoker-game/index.html",
-    "main.499b0648.css.map": "/invoker-game/static/css/main.499b0648.css.map",
-    "main.c99fb6fb.js.map": "/invoker-game/static/js/main.c99fb6fb.js.map",
+    "main.1adea1f6.css.map": "/invoker-game/static/css/main.1adea1f6.css.map",
+    "main.3202d071.js.map": "/invoker-game/static/js/main.3202d071.js.map",
     "787.c4e7f8f9.chunk.js.map": "/invoker-game/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.499b0648.css",
-    "static/js/main.c99fb6fb.js"
+    "static/css/main.1adea1f6.css",
+    "static/js/main.3202d071.js"
   ]
 }
