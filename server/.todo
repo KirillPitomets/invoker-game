@@ -1,5 +1,5 @@
-[] = Создрать API для сохранения аватарок с их разположением в px 
-[] = Поправить время жизни токеннов
+
+[] = подключить облако для хранения аватарок
 [] = Исправить ошибку. Появилась после удаления польлзователя с БД
 TypeError: Cannot read properties of null (reading 'username')
     at new UserDto (F:\programming\invoker-game-fullstack\server\dtos\userDto.js:7:25)

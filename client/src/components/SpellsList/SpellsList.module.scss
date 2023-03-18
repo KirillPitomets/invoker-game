@@ -8,6 +8,10 @@
 	position: absolute;
 	right: 0;
 	top: 10%;
+	z-index: 1000;
+
+	border: 2px solid black;
+	border-right: 0;
 
 	// ==== Modifiers ====
 	&_left &__item_under-line::after {
@@ -40,7 +44,7 @@
 	}
 }
 
-.sphere{
+.sphere {
 	font-family: $sport-font;
 	font-size: 0.9rem;
 	font-weight: 400;
@@ -71,7 +75,7 @@
 
 .text {
 	font-family: $secondary-font;
-	font-size: .9rem;
+	font-size: 0.9rem;
 	font-weight: 400;
 	line-height: 1.2em;
 	letter-spacing: 0.06em;

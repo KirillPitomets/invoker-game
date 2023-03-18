@@ -23,11 +23,11 @@ export const theSets: ISet[] = [
 	{
 		id: iconSetsEnum.magusApex,
 		title: 'Magus Apex',
-		imgs: [quasIcons.magusApex, exortIcons.default, wexIcons.magusApex, sunStrikeIcons.magusApex],
+		imgs: [quasIcons.magusApex, exortIcons.magusApex, wexIcons.magusApex, sunStrikeIcons.magusApex],
 	},
 	{
 		id: iconSetsEnum.default,
-		title: 'Default icons sphere',
+		title: 'Default icons',
 		imgs: [quasIcons.default, wexIcons.default, exortIcons.default]
 	},
 ]

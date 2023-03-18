@@ -4,14 +4,16 @@ export interface IRoutes {
 	Page: any
 }
 
+export const pagePath = 'invoker-game'
+
 export enum RouteEnum {
-	'information' = 'information',
-	'high-score' = 'high-score',
-	'user' = 'user',
-	'auth' = 'auth',
-	'auth_id' = 'auth/:id',
-	'settings' = 'settings',
-	'settings_id' = 'settings/:id',
+	'information' = 'invoker-game/information',
+	'high_score' = 'invoker-game/high_score',
+	'user' = 'invoker-game/user',
+	'auth' = 'invoker-game/auth',
+	'auth_id' = 'invoker-game/auth/:id',
+	'settings' = 'invoker-game/settings',
+	'settings_id' = 'invoker-game/settings/:id',
 }
 
 export enum RouteEnumId {
@@ -21,4 +23,3 @@ export enum RouteEnumId {
 	'settings-hotkeys' = 'hotkeys',
 	'settings-additional-functions' = 'additional-functions',
 }
-

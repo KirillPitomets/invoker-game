@@ -4,6 +4,7 @@ import Icon from '../Icon'
 // ==== Styles ====
 import cl from './SpellsList.module.scss'
 import cn from 'classnames'
+// ==== Hooks ====
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 const SpellsList = () => {

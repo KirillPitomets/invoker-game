@@ -1,0 +1,13 @@
+@import '../../styles/components/variables';
+
+.logo {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-family: $sport-font;
+	font-size: 1.8rem;
+
+	text-decoration: line-through;
+}

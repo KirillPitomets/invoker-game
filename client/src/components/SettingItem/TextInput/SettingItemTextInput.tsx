@@ -19,19 +19,19 @@ const SettingItemTextInput: FC<ISettingItemTextInput> = ({
 	id,
 	title,
 	des,
-	hasResetBtn,
+	hasResetBtn = false,
 	resetFunction,
 	...props
 }) => {
 	return (
 		<label htmlFor={id} className={cn(cl.label, cl.label_pad, cl.label_marg)}>
-			<div className={cl.text}>
+			<div className={cn(cl.text, cl.text_marg)}>
 				<Title>{title}</Title>
 				<p className={cn(cl.des, cl.des_marg)}>{des}</p>
 			</div>
 
-			<div>
-				<Input id={id} {...props} />
+			<div className={cl['text-input']}>
+				<Input id={id} className={cl['text-input__input']} {...props} />
 				{hasResetBtn && (
 					<ResetBtn className={cl.btn_marg} onClick={resetFunction} />
 				)}

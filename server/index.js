@@ -2,10 +2,8 @@
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const express = require('express')
-const expressValidator = require('express-validator')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
-const path = require('path')
 require('dotenv').config()
 // ==== Middlewares ====
 const ErrorMiddleware = require('./middleware/ErrorMiddleware.js')
@@ -60,5 +58,7 @@ startApp()
 			POST - HOST/api/login { username: string, password: string }; /// return JWT
 			POST - HOST/api/logout { username?: string, password?: string, picture?: string }
 		// USER
-			POST - HOST/api/update { username?: string, password?: string, picture?: string }
+			PUT - HOST/api/username {username: string}
+			PUT - HOST/api/password {password: string}
+			PUT - HOST/api/avatar {username: string}
 */

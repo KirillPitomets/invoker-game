@@ -1,9 +1,11 @@
 import React from 'react'
+// ==== Styles ====
+import cl from './AdditionalFunctions.module.scss'
 
 const AdditionalFunction = () => {
 	return (
 		<div>
-			<h1 color='blue'>AdditionalFunction</h1>
+			<h2 className={cl.title}> In development :) </h2>
 		</div>
 	)
 }

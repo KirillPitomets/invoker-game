@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+// ==== React hook form ====
+import defaultUserAvatar from '../../assets/imgs/avatar.jpg'
 // ==== React hook form ====
 import { useForm, SubmitHandler } from 'react-hook-form'
 // ==== Redux ====
@@ -66,7 +68,7 @@ const UserProfile = () => {
 			<div className={cl.wrapper}>
 				<div className={cl['avatar-wrapper']}>
 					<Avatar
-						photoUrl={user.avatar}
+						photoUrl={user.avatar || defaultUserAvatar}
 						name='Your avatar :)'
 						canChangeAvatar={true}
 					/>

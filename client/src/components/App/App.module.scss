@@ -3,6 +3,7 @@
 .app {
 	width: 100%;
 	min-height: 100vh;
+	position: relative;
 }
 
 .bg {
@@ -10,12 +11,16 @@
 	height: 100%;
 
 	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1000000;
 	opacity: .5;
 	background: url('../../assets/gifs/meteor.gif');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-
 }
 
 .user-name_marg {

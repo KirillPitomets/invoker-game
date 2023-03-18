@@ -1,12 +1,9 @@
 import React from 'react'
+// ==== Styles ====
+import cl from './Logo.module.scss'
 
 const Logo = () => {
-	return (
-		<div>
-			I want to insert a logo here. <br/>
-			But I don't have :(
-		</div>
-	)
+	return <p className={cl.logo}>INvoker</p>
 }
 
 export default Logo

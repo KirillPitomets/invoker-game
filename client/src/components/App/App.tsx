@@ -18,7 +18,9 @@ import MainPopUp from '../MainPopUp'
 const App = () => {
 	const { user } = useTypedSelector(state => state.user)
 	const { customBgUrl } = useTypedSelector(state => state.theme)
-	const { refreshAuthorizationError, isServerWorking } = useTypedSelector(state => state.error)
+	const { refreshAuthorizationError, isServerWorking } = useTypedSelector(
+		state => state.error
+	)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -27,14 +29,13 @@ const App = () => {
 
 	return (
 		<div className={cl.app}>
-			<MainPopUp />
-
-			<Header />
-
 			<div
 				className={cl.bg}
 				style={customBgUrl ? { backgroundImage: `url(${customBgUrl})` } : {}}
 			></div>
+
+			<MainPopUp />
+			<Header />
 
 			<Container className={cl['container_overflow-hidden']}>
 				{!isServerWorking ? (

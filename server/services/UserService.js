@@ -25,9 +25,9 @@ class UserService {
 			username,
 			password: await PasswordService.hashPassword(password),
 		})
-
+		console.log(user)
+		
 		await user.save()
-
 		const userDto = new UserDto(user)
 		const tokens = TokenService.generateTokens({ ...userDto })
 

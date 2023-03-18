@@ -41,14 +41,16 @@ const SettingItemRadio: FC<ISettingItemRadio> = ({ title, des, theSets }) => {
 						<div className={cl.content}>
 							<h4>{theSet.title}</h4>
 
-							<div>
-							{theSet.imgs.map(picture => (
-								<img
-									key={`settings item radio img ${picture}`}
-									className={cn(cl.picture, cl.picture_marg)}
-									src={picture}
-								/>
-							))}
+							<div className={cl.content__wrapper}>
+								{theSet.imgs.map(picture => (
+									<div className={cn(cl.picture, cl.picture_marg)}>
+										<img
+											className={cl.picture__img}
+											key={`settings item radio img ${picture}`}
+											src={picture}
+										/>
+									</div>
+								))}
 							</div>
 						</div>
 
@@ -61,6 +63,3 @@ const SettingItemRadio: FC<ISettingItemRadio> = ({ title, des, theSets }) => {
 }
 
 export default SettingItemRadio
-
-
-

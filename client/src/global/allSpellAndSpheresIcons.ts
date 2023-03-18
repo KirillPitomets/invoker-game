@@ -38,14 +38,15 @@ import iceWall from '../assets/invokerIcons/spells/iceWall/ice_wall.jpg'
 // ==== Emp ====
 import emp from '../assets/invokerIcons/spells/emp/emp.jpg'
 
+import animeMeteor from '../assets/invokerIcons/spells/meteor/anime_meteor.jpg'
 
 // ==== Empty ====
 export const emptyIcon = {
-	empty: ''
+	empty: '',
 }
 
 export type spheresIconsType = {
-	default: string,
+	default: string
 	babyInvoker: string
 	magusApex: string
 }
@@ -56,7 +57,6 @@ export const exortIcons: spheresIconsType = {
 	default: exortIcon,
 	babyInvoker: exportBabyInvoker,
 	magusApex: exportMagusApex,
-
 }
 // ==== Wex ====
 
@@ -80,37 +80,39 @@ export type iceWallIconsType = {
 }
 
 export const iceWallIcons: iceWallIconsType = {
-	default: iceWall
+	default: iceWall,
 }
 
 // ==== Forge Spirit ====
 export type forgeIconsType = {
 	defaultIcon: string
-	babyInvoker: string,
-	familiarsOfGloriousInspiration: string,
+	babyInvoker: string
+	familiarsOfGloriousInspiration: string
 }
 
 export const forgeIcons: forgeIconsType = {
 	babyInvoker: forgeSpiritBabyInvoker,
 	familiarsOfGloriousInspiration: forgeSpiritFamiliarsOfGloriousInspiration,
-	defaultIcon: forgeSpirit
+	defaultIcon: forgeSpirit,
 }
-// ==== Meteor ====
+// ==== EMP ====
 export type empIconsType = {
 	default: string
 }
 
 export const empIcons: empIconsType = {
-	default: emp
+	default: emp,
 }
 
 // ==== Meteor ====
 export type meteorIconsType = {
-	default: string
+	default: string,
+	anime: string
 }
 
 export const meteorIcons: meteorIconsType = {
-	default: meteor
+	default: meteor,
+	anime: animeMeteor
 }
 // ==== Ghost walk ====
 
@@ -121,7 +123,7 @@ export type ghostWalkIconsType = {
 
 export const ghostWalkIcons: ghostWalkIconsType = {
 	default: ghostWalk,
-	babyInvoker: ghostWalkBabyInvoker
+	babyInvoker: ghostWalkBabyInvoker,
 }
 
 // ==== Cold snap ====
@@ -131,7 +133,7 @@ export type coldSnapIconsType = {
 }
 
 export const coldSnapIcons: coldSnapIconsType = {
-	default: coldSnap
+	default: coldSnap,
 }
 
 // ==== Sun Strike ====
@@ -143,38 +145,38 @@ export type sunStrikeIconsType = {
 
 export const sunStrikeIcons: sunStrikeIconsType = {
 	default: sunStrike,
-	magusApex: sunStrikeMagusApex
+	magusApex: sunStrikeMagusApex,
 }
 // ==== Tornado ====
 
 export type tornadoIconsType = {
-	default: string,
+	default: string
 	darkArtistry: string
 }
 
 export const tornadoIcons: tornadoIconsType = {
 	default: tornado,
-	darkArtistry: tornadoDarkArtistry
+	darkArtistry: tornadoDarkArtistry,
 }
 // ==== Blast ====
 
 export type blastIconsType = {
-	default: string,
+	default: string
 	darkArtistry: string
 }
 
 export const blastIcons: blastIconsType = {
 	default: blast,
-	darkArtistry: blastDarkArtistry
+	darkArtistry: blastDarkArtistry,
 }
 // ==== Alacrity ====
 
 export type alacrityIconsType = {
-	default: string,
+	default: string
 	magusApex: string
 }
 
 export const alacrityIcons = {
 	default: alacrity,
-	magusApex: alacrityMagusApex
+	magusApex: alacrityMagusApex,
 }

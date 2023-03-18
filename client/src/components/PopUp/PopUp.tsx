@@ -24,8 +24,6 @@ const PopUp: FC<IPopUP> = ({
 	isActive,
 	closePopUp,
 }) => {
-
-
 	const hidePopUP = () => {
 		if (hideAllInternalPopUps) {
 			hideAllInternalPopUps()

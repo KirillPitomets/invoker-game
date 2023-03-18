@@ -43,13 +43,16 @@ const CheckboxGroup: FC<ICheckboxGroup> = ({ title, des, spellsIcons }) => {
 					>
 						<div className={cl.content}>
 							<h4>{item.name}</h4>
-							{item.imgs.map(img => (
-								<img
-									key={`checkboxgroup-${img}`}
-									className={cn(cl.picture, cl['picture_marg'])}
-									src={img}
-								/>
-							))}
+
+							<div className={cl.content__wrapper}>
+								{item.imgs.map(img => (
+									<img
+										key={`checkboxgroup-${img}`}
+										className={cn(cl.picture, cl['picture_marg'])}
+										src={img}
+									/>
+								))}
+							</div>
 						</div>
 
 						<InputCheckbox checked={defineIsActiveCheckbox(item)} />

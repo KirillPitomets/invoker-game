@@ -131,7 +131,7 @@ class AuthController {
 		try {
 			const file = req.files.avatar
 
-			if (file.size / 1024 > 400) {
+			if (file.size > 2 * 1024 * 1024) /* 2mb */ {
 				return next(ApiError.BadRequest('Your picture is so big :) Picture size should not exceed 2mb', []))
 			}
 

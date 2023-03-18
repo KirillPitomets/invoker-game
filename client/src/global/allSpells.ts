@@ -11,7 +11,12 @@ import {
 import { idSpellEnum, ISpell } from '../types/spells'
 import { sphereNameEnum } from '../types/spheres'
 // ==== Icons ====
-import { coldSnapIcons, empIcons, iceWallIcons, meteorIcons } from './allSpellAndSpheresIcons'
+import {
+	coldSnapIcons,
+	empIcons,
+	iceWallIcons,
+	meteorIcons,
+} from './allSpellAndSpheresIcons'
 
 const iconSet = localStorage.getItem('icon-set')
 
@@ -43,7 +48,10 @@ export const allSpellsData: ISpell[] = [
 	},
 	{
 		id: idSpellEnum.forgeSpirit,
-		img: getSpellIconForgeSpirit(iconSet, !!spellIconFamiliarsOfGloriousInspiration),
+		img: getSpellIconForgeSpirit(
+			iconSet,
+			!!spellIconFamiliarsOfGloriousInspiration
+		),
 		name: 'forge Spirit',
 		combo: [sphereNameEnum.exort, sphereNameEnum.exort, sphereNameEnum.quas],
 	},
@@ -73,19 +81,19 @@ export const allSpellsData: ISpell[] = [
 	},
 	{
 		id: idSpellEnum.alacrity,
-		img: getSpellIconAlacrity(!!spellIconMagusAccord),
+		img: getSpellIconAlacrity('', !!spellIconMagusAccord),
 		name: 'Alacrity',
 		combo: [sphereNameEnum.wex, sphereNameEnum.wex, sphereNameEnum.exort],
 	},
 	{
 		id: idSpellEnum.tornado,
-		img: getSpellIconTornado(!!spellIconDarkArtistry),
+		img: getSpellIconTornado('', !!spellIconDarkArtistry),
 		name: 'Tornado',
 		combo: [sphereNameEnum.wex, sphereNameEnum.wex, sphereNameEnum.quas],
 	},
 	{
 		id: idSpellEnum.deafeningBlast,
-		img: getSpellIconBlast(!!spellIconDarkArtistry),
+		img: getSpellIconBlast('', !!spellIconDarkArtistry),
 		name: 'Deafening Blast',
 		combo: [sphereNameEnum.quas, sphereNameEnum.wex, sphereNameEnum.exort],
 	},

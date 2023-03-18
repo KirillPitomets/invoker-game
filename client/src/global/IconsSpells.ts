@@ -17,5 +17,5 @@ export const allAdditionalIcons: ISpellIcon[] = [
 		id: spellIconsEnum.FamiliarsOfGloriousInspiration,
 		name: 'Familiars of Glorious Inspiration',
 		imgs: [forgeIcons.familiarsOfGloriousInspiration],
-	},
+	}
 ]

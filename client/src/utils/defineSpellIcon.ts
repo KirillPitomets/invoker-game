@@ -1,6 +1,10 @@
-import { spellIconsEnum } from "../types/themes/spellIcons"
-import { idSpellEnum } from "../types/spells"
-import { getSpellIconAlacrity, getSpellIconBlast, getSpellIconForgeSpirit, getSpellIconTornado } from "./getSpellIcon"
+import { spellIconsEnum } from '../types/themes/spellIcons'
+import { idSpellEnum } from '../types/spells'
+import {
+	getSpellIconBlast,
+	getSpellIconForgeSpirit,
+	getSpellIconTornado,
+} from './getSpellIcon'
 
 export const defineSpellIcon = (
 	spellId: idSpellEnum,
@@ -10,10 +14,12 @@ export const defineSpellIcon = (
 	switch (spellId) {
 		case idSpellEnum.tornado:
 			return getSpellIconTornado(
+				'',
 				possibleSpellIcons?.includes(spellIconsEnum.darkArtistry)
 			)
 		case idSpellEnum.deafeningBlast:
 			return getSpellIconBlast(
+				'',
 				possibleSpellIcons?.includes(spellIconsEnum.darkArtistry)
 			)
 		case idSpellEnum.forgeSpirit:
@@ -23,11 +29,6 @@ export const defineSpellIcon = (
 					spellIconsEnum.FamiliarsOfGloriousInspiration
 				)
 			)
-		case idSpellEnum.alacrity:
-			return getSpellIconAlacrity(
-				possibleSpellIcons?.includes(spellIconsEnum.magusAccord)
-			)
-
 		default:
 			return initialSpellIcon
 	}

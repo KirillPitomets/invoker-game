@@ -1,23 +1,27 @@
 @import '../../styles/components/variables';
 
-.label, .item {
+.label,
+.item {
 	width: 100%;
 	max-width: 1150px;
 
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	
 	background: $setting-bg;
 
 	border-radius: $border-radius * 2;
+	@media (max-width: 852px) {
+		flex-wrap: wrap;
+	}
 
+	// ==== Modifications ====
 	&_pad {
 		padding: 1rem 1.8rem;
 	}
 
 	&_marg {
-		margin-bottom: .5rem;
+		margin-bottom: 0.5rem;
 	}
 }
 
@@ -32,9 +36,9 @@
 .des {
 	width: 100%;
 	max-width: 500px;
-	
+
 	font-family: $secondary-font;
-	font-size: .875rem;
+	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1em;
 	letter-spacing: 0em;
@@ -42,27 +46,47 @@
 	color: $des-text-color;
 
 	&_marg {
-		margin: .2rem  0  0 .3rem;
+		margin: 0.2rem 0 0 0.3rem;
 	}
 }
 
 .btn_marg {
-	margin-left: .5rem;
+	margin-left: 0.5rem;
 }
 
 .wrapper {
-	
 	&_marg {
-		margin: .5rem 0 0 .5rem;
+		margin: 0.5rem 0 0 0.5rem;
 	}
 }
+
+.text {
+	display: inline;
+	&_marg {
+		@media (max-width: 852px) {
+			margin-bottom: 0.5rem;
+		}
+	}
+}
+
+.text-input {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	&__input {
+		width: 100%;
+	}
+}
+
 // ================================
 // ================================
 // ================================
 
 .option {
 	width: 100%;
-	
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -72,13 +96,13 @@
 
 	cursor: pointer;
 
-	transition: background .1s ease ;
+	transition: background 0.1s ease;
 
 	&_marg {
 		margin-bottom: 1rem;
 	}
 	&_pad {
-		padding: .7rem 2.1rem .7rem 1rem;
+		padding: 0.7rem 2.1rem 0.7rem 1rem;
 	}
 
 	&:active {
@@ -91,14 +115,32 @@
 
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	// ==== Elements ====
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
 }
 
 .picture {
 	width: 100%;
 
 	max-width: 45px;
+	max-height: 45px;
 	border-radius: 4px;
+
+	// ==== Modifications ====
 	&_marg {
-		margin-left: .5rem;
+		margin-left: 0.5rem;
+	}
+	// ==== Elements ====
+	&__img {
+		width: 100%;
+		height: 100%;
 	}
 }

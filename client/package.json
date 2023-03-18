@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kirillpitomets.github.io/invoker-game",
   "dependencies": {
     "@hookform/resolvers": "^2.9.6",
     "@testing-library/jest-dom": "^5.16.4",
@@ -14,7 +15,9 @@
     "@types/react-transition-group": "^4.4.4",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "gh-pages": "^4.0.0",
     "react": "^18.0.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.33.1",
     "react-redux": "^8.0.1",
@@ -35,7 +38,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

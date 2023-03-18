@@ -8,9 +8,11 @@
 	padding: .1rem;
 
 	
-	&:hover {
-		transform: rotate(360deg);
-		transition: transform .4s ease;
+	@media( hover ) {
+		&:hover {
+			transform: rotate(360deg);
+			transition: transform .3s ease-in-out;
+		}
 	}
 
 	&:active .img {
