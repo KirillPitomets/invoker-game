@@ -105,12 +105,10 @@ export const empIcons: empIconsType = {
 // ==== Meteor ====
 export type meteorIconsType = {
 	default: string,
-	anime: string
 }
 
 export const meteorIcons: meteorIconsType = {
 	default: meteor,
-	anime: animeMeteor
 }
 // ==== Ghost walk ====
 
