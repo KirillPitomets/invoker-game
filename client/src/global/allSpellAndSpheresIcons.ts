@@ -38,8 +38,6 @@ import iceWall from '../assets/invokerIcons/spells/iceWall/ice_wall.jpg'
 // ==== Emp ====
 import emp from '../assets/invokerIcons/spells/emp/emp.jpg'
 
-import animeMeteor from '../assets/invokerIcons/spells/meteor/anime_meteor.jpg'
-
 // ==== Empty ====
 export const emptyIcon = {
 	empty: '',
